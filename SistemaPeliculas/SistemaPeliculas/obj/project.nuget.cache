@@ -1,0 +1,11 @@
+{
+  "version": 2,
+  "dgSpecHash": "KtoYH1xaYNU=",
+  "success": true,
+  "projectFilePath": "C:\\Users\\Fabian\\Documents\\Tareas y Trabajos 4 semestre\\Tecnologias Web\\Proyectos\\SistemaPeliculas\\SistemaPeliculas\\SistemaPeliculas\\SistemaPeliculas.Api.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\Fabian\\.nuget\\packages\\microsoft.aspnetcore.openapi\\10.0.12\\microsoft.aspnetcore.openapi.10.0.12.nupkg.sha512",
+    "C:\\Users\\Fabian\\.nuget\\packages\\microsoft.openapi\\2.12.0\\microsoft.openapi.2.12.0.nupkg.sha512"
+  ],
+  "logs": []
+}
