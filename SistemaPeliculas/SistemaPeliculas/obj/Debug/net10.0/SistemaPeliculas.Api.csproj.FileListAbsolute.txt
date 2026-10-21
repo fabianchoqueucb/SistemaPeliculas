@@ -36,3 +36,42 @@ C:\Users\DANIEL\Documents\ProyectosWeb\proyecto-grupo\SistemaPeliculas\SistemaPe
 C:\Users\DANIEL\Documents\ProyectosWeb\proyecto-grupo\SistemaPeliculas\SistemaPeliculas\obj\Debug\net10.0\SistemaPeliculas.Api.pdb
 C:\Users\DANIEL\Documents\ProyectosWeb\proyecto-grupo\SistemaPeliculas\SistemaPeliculas\obj\Debug\net10.0\SistemaPeliculas.Api.genruntimeconfig.cache
 C:\Users\DANIEL\Documents\ProyectosWeb\proyecto-grupo\SistemaPeliculas\SistemaPeliculas\obj\Debug\net10.0\ref\SistemaPeliculas.Api.dll
+C:\Users\Fabian\Documents\Tareas y Trabajos 4 semestre\Tecnologias Web\Proyectos\SistemaPeliculas\SistemaPeliculas\SistemaPeliculas\bin\Debug\net10.0\appsettings.Development.json
+C:\Users\Fabian\Documents\Tareas y Trabajos 4 semestre\Tecnologias Web\Proyectos\SistemaPeliculas\SistemaPeliculas\SistemaPeliculas\bin\Debug\net10.0\appsettings.json
+C:\Users\Fabian\Documents\Tareas y Trabajos 4 semestre\Tecnologias Web\Proyectos\SistemaPeliculas\SistemaPeliculas\SistemaPeliculas\bin\Debug\net10.0\SistemaPeliculas.Api.staticwebassets.endpoints.json
+C:\Users\Fabian\Documents\Tareas y Trabajos 4 semestre\Tecnologias Web\Proyectos\SistemaPeliculas\SistemaPeliculas\SistemaPeliculas\bin\Debug\net10.0\SistemaPeliculas.Api.exe
+C:\Users\Fabian\Documents\Tareas y Trabajos 4 semestre\Tecnologias Web\Proyectos\SistemaPeliculas\SistemaPeliculas\SistemaPeliculas\bin\Debug\net10.0\SistemaPeliculas.Api.deps.json
+C:\Users\Fabian\Documents\Tareas y Trabajos 4 semestre\Tecnologias Web\Proyectos\SistemaPeliculas\SistemaPeliculas\SistemaPeliculas\bin\Debug\net10.0\SistemaPeliculas.Api.runtimeconfig.json
+C:\Users\Fabian\Documents\Tareas y Trabajos 4 semestre\Tecnologias Web\Proyectos\SistemaPeliculas\SistemaPeliculas\SistemaPeliculas\bin\Debug\net10.0\SistemaPeliculas.Api.dll
+C:\Users\Fabian\Documents\Tareas y Trabajos 4 semestre\Tecnologias Web\Proyectos\SistemaPeliculas\SistemaPeliculas\SistemaPeliculas\bin\Debug\net10.0\SistemaPeliculas.Api.pdb
+C:\Users\Fabian\Documents\Tareas y Trabajos 4 semestre\Tecnologias Web\Proyectos\SistemaPeliculas\SistemaPeliculas\SistemaPeliculas\bin\Debug\net10.0\Microsoft.AspNetCore.OpenApi.dll
+C:\Users\Fabian\Documents\Tareas y Trabajos 4 semestre\Tecnologias Web\Proyectos\SistemaPeliculas\SistemaPeliculas\SistemaPeliculas\bin\Debug\net10.0\Microsoft.OpenApi.dll
+C:\Users\Fabian\Documents\Tareas y Trabajos 4 semestre\Tecnologias Web\Proyectos\SistemaPeliculas\SistemaPeliculas\SistemaPeliculas\bin\Debug\net10.0\SistemaPeliculas.Core.dll
+C:\Users\Fabian\Documents\Tareas y Trabajos 4 semestre\Tecnologias Web\Proyectos\SistemaPeliculas\SistemaPeliculas\SistemaPeliculas\bin\Debug\net10.0\SistemaPeliculas.Infrastructure.dll
+C:\Users\Fabian\Documents\Tareas y Trabajos 4 semestre\Tecnologias Web\Proyectos\SistemaPeliculas\SistemaPeliculas\SistemaPeliculas\bin\Debug\net10.0\SistemaPeliculas.Core.pdb
+C:\Users\Fabian\Documents\Tareas y Trabajos 4 semestre\Tecnologias Web\Proyectos\SistemaPeliculas\SistemaPeliculas\SistemaPeliculas\bin\Debug\net10.0\SistemaPeliculas.Infrastructure.pdb
+C:\Users\Fabian\Documents\Tareas y Trabajos 4 semestre\Tecnologias Web\Proyectos\SistemaPeliculas\SistemaPeliculas\SistemaPeliculas\obj\Debug\net10.0\SistemaPeliculas.Api.csproj.AssemblyReference.cache
+C:\Users\Fabian\Documents\Tareas y Trabajos 4 semestre\Tecnologias Web\Proyectos\SistemaPeliculas\SistemaPeliculas\SistemaPeliculas\obj\Debug\net10.0\rpswa.dswa.cache.json
+C:\Users\Fabian\Documents\Tareas y Trabajos 4 semestre\Tecnologias Web\Proyectos\SistemaPeliculas\SistemaPeliculas\SistemaPeliculas\obj\Debug\net10.0\SistemaPeliculas.Api.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Fabian\Documents\Tareas y Trabajos 4 semestre\Tecnologias Web\Proyectos\SistemaPeliculas\SistemaPeliculas\SistemaPeliculas\obj\Debug\net10.0\SistemaPeliculas.Api.AssemblyInfoInputs.cache
+C:\Users\Fabian\Documents\Tareas y Trabajos 4 semestre\Tecnologias Web\Proyectos\SistemaPeliculas\SistemaPeliculas\SistemaPeliculas\obj\Debug\net10.0\SistemaPeliculas.Api.AssemblyInfo.cs
+C:\Users\Fabian\Documents\Tareas y Trabajos 4 semestre\Tecnologias Web\Proyectos\SistemaPeliculas\SistemaPeliculas\SistemaPeliculas\obj\Debug\net10.0\SistemaPeliculas.Api.csproj.CoreCompileInputs.cache
+C:\Users\Fabian\Documents\Tareas y Trabajos 4 semestre\Tecnologias Web\Proyectos\SistemaPeliculas\SistemaPeliculas\SistemaPeliculas\obj\Debug\net10.0\SistemaPeliculas.Api.MvcApplicationPartsAssemblyInfo.cs
+C:\Users\Fabian\Documents\Tareas y Trabajos 4 semestre\Tecnologias Web\Proyectos\SistemaPeliculas\SistemaPeliculas\SistemaPeliculas\obj\Debug\net10.0\SistemaPeliculas.Api.MvcApplicationPartsAssemblyInfo.cache
+C:\Users\Fabian\Documents\Tareas y Trabajos 4 semestre\Tecnologias Web\Proyectos\SistemaPeliculas\SistemaPeliculas\SistemaPeliculas\obj\Debug\net10.0\SistemaPeliculas.Api.sourcelink.json
+C:\Users\Fabian\Documents\Tareas y Trabajos 4 semestre\Tecnologias Web\Proyectos\SistemaPeliculas\SistemaPeliculas\SistemaPeliculas\obj\Debug\net10.0\rjimswa.dswa.cache.json
+C:\Users\Fabian\Documents\Tareas y Trabajos 4 semestre\Tecnologias Web\Proyectos\SistemaPeliculas\SistemaPeliculas\SistemaPeliculas\obj\Debug\net10.0\rjsmrazor.dswa.cache.json
+C:\Users\Fabian\Documents\Tareas y Trabajos 4 semestre\Tecnologias Web\Proyectos\SistemaPeliculas\SistemaPeliculas\SistemaPeliculas\obj\Debug\net10.0\rjsmcshtml.dswa.cache.json
+C:\Users\Fabian\Documents\Tareas y Trabajos 4 semestre\Tecnologias Web\Proyectos\SistemaPeliculas\SistemaPeliculas\SistemaPeliculas\obj\Debug\net10.0\scopedcss\bundle\SistemaPeliculas.Api.styles.css
+C:\Users\Fabian\Documents\Tareas y Trabajos 4 semestre\Tecnologias Web\Proyectos\SistemaPeliculas\SistemaPeliculas\SistemaPeliculas\obj\Debug\net10.0\staticwebassets.build.json
+C:\Users\Fabian\Documents\Tareas y Trabajos 4 semestre\Tecnologias Web\Proyectos\SistemaPeliculas\SistemaPeliculas\SistemaPeliculas\obj\Debug\net10.0\staticwebassets.build.json.cache
+C:\Users\Fabian\Documents\Tareas y Trabajos 4 semestre\Tecnologias Web\Proyectos\SistemaPeliculas\SistemaPeliculas\SistemaPeliculas\obj\Debug\net10.0\staticwebassets.development.json
+C:\Users\Fabian\Documents\Tareas y Trabajos 4 semestre\Tecnologias Web\Proyectos\SistemaPeliculas\SistemaPeliculas\SistemaPeliculas\obj\Debug\net10.0\staticwebassets.build.endpoints.json
+C:\Users\Fabian\Documents\Tareas y Trabajos 4 semestre\Tecnologias Web\Proyectos\SistemaPeliculas\SistemaPeliculas\SistemaPeliculas\obj\Debug\net10.0\swae.build.ex.cache
+C:\Users\Fabian\Documents\Tareas y Trabajos 4 semestre\Tecnologias Web\Proyectos\SistemaPeliculas\SistemaPeliculas\SistemaPeliculas\obj\Debug\net10.0\staticwebassets.upToDateCheck.txt
+C:\Users\Fabian\Documents\Tareas y Trabajos 4 semestre\Tecnologias Web\Proyectos\SistemaPeliculas\SistemaPeliculas\SistemaPeliculas\obj\Debug\net10.0\SistemaP.BB954F76.Up2Date
+C:\Users\Fabian\Documents\Tareas y Trabajos 4 semestre\Tecnologias Web\Proyectos\SistemaPeliculas\SistemaPeliculas\SistemaPeliculas\obj\Debug\net10.0\SistemaPeliculas.Api.dll
+C:\Users\Fabian\Documents\Tareas y Trabajos 4 semestre\Tecnologias Web\Proyectos\SistemaPeliculas\SistemaPeliculas\SistemaPeliculas\obj\Debug\net10.0\refint\SistemaPeliculas.Api.dll
+C:\Users\Fabian\Documents\Tareas y Trabajos 4 semestre\Tecnologias Web\Proyectos\SistemaPeliculas\SistemaPeliculas\SistemaPeliculas\obj\Debug\net10.0\SistemaPeliculas.Api.pdb
+C:\Users\Fabian\Documents\Tareas y Trabajos 4 semestre\Tecnologias Web\Proyectos\SistemaPeliculas\SistemaPeliculas\SistemaPeliculas\obj\Debug\net10.0\SistemaPeliculas.Api.genruntimeconfig.cache
+C:\Users\Fabian\Documents\Tareas y Trabajos 4 semestre\Tecnologias Web\Proyectos\SistemaPeliculas\SistemaPeliculas\SistemaPeliculas\obj\Debug\net10.0\ref\SistemaPeliculas.Api.dll

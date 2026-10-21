@@ -1,23 +1,23 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\DANIEL\\Documents\\ProyectosWeb\\proyecto-grupo\\SistemaPeliculas\\SistemaPeliculas\\SistemaPeliculas.Api.csproj": {}
+    "C:\\Users\\Fabian\\Documents\\Tareas y Trabajos 4 semestre\\Tecnologias Web\\Proyectos\\SistemaPeliculas\\SistemaPeliculas\\SistemaPeliculas\\SistemaPeliculas.Api.csproj": {}
   },
   "projects": {
-    "C:\\Users\\DANIEL\\Documents\\ProyectosWeb\\proyecto-grupo\\SistemaPeliculas\\SistemaPeliculas.Core\\SistemaPeliculas.Core.csproj": {
+    "C:\\Users\\Fabian\\Documents\\Tareas y Trabajos 4 semestre\\Tecnologias Web\\Proyectos\\SistemaPeliculas\\SistemaPeliculas\\SistemaPeliculas.Core\\SistemaPeliculas.Core.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\DANIEL\\Documents\\ProyectosWeb\\proyecto-grupo\\SistemaPeliculas\\SistemaPeliculas.Core\\SistemaPeliculas.Core.csproj",
+        "projectUniqueName": "C:\\Users\\Fabian\\Documents\\Tareas y Trabajos 4 semestre\\Tecnologias Web\\Proyectos\\SistemaPeliculas\\SistemaPeliculas\\SistemaPeliculas.Core\\SistemaPeliculas.Core.csproj",
         "projectName": "SistemaPeliculas.Core",
-        "projectPath": "C:\\Users\\DANIEL\\Documents\\ProyectosWeb\\proyecto-grupo\\SistemaPeliculas\\SistemaPeliculas.Core\\SistemaPeliculas.Core.csproj",
-        "packagesPath": "C:\\Users\\DANIEL\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\DANIEL\\Documents\\ProyectosWeb\\proyecto-grupo\\SistemaPeliculas\\SistemaPeliculas.Core\\obj\\",
+        "projectPath": "C:\\Users\\Fabian\\Documents\\Tareas y Trabajos 4 semestre\\Tecnologias Web\\Proyectos\\SistemaPeliculas\\SistemaPeliculas\\SistemaPeliculas.Core\\SistemaPeliculas.Core.csproj",
+        "packagesPath": "C:\\Users\\Fabian\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Fabian\\Documents\\Tareas y Trabajos 4 semestre\\Tecnologias Web\\Proyectos\\SistemaPeliculas\\SistemaPeliculas\\SistemaPeliculas.Core\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\DANIEL\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Fabian\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
@@ -26,6 +26,7 @@
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "C:\\Program Files\\dotnet\\library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -45,7 +46,7 @@
           "auditLevel": "low",
           "auditMode": "all"
         },
-        "SdkAnalysisLevel": "10.0.300"
+        "SdkAnalysisLevel": "10.0.400"
       },
       "frameworks": {
         "net10.0": {
@@ -67,7 +68,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\10.0.300/PortableRuntimeIdentifierGraph.json",
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\10.0.401/PortableRuntimeIdentifierGraph.json",
           "packagesToPrune": {
             "Microsoft.CSharp": "(,4.7.32767]",
             "Microsoft.VisualBasic": "(,10.4.32767]",
@@ -345,20 +346,20 @@
         }
       }
     },
-    "C:\\Users\\DANIEL\\Documents\\ProyectosWeb\\proyecto-grupo\\SistemaPeliculas\\SistemaPeliculas.Infrastructure\\SistemaPeliculas.Infrastructure.csproj": {
+    "C:\\Users\\Fabian\\Documents\\Tareas y Trabajos 4 semestre\\Tecnologias Web\\Proyectos\\SistemaPeliculas\\SistemaPeliculas\\SistemaPeliculas.Infrastructure\\SistemaPeliculas.Infrastructure.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\DANIEL\\Documents\\ProyectosWeb\\proyecto-grupo\\SistemaPeliculas\\SistemaPeliculas.Infrastructure\\SistemaPeliculas.Infrastructure.csproj",
+        "projectUniqueName": "C:\\Users\\Fabian\\Documents\\Tareas y Trabajos 4 semestre\\Tecnologias Web\\Proyectos\\SistemaPeliculas\\SistemaPeliculas\\SistemaPeliculas.Infrastructure\\SistemaPeliculas.Infrastructure.csproj",
         "projectName": "SistemaPeliculas.Infrastructure",
-        "projectPath": "C:\\Users\\DANIEL\\Documents\\ProyectosWeb\\proyecto-grupo\\SistemaPeliculas\\SistemaPeliculas.Infrastructure\\SistemaPeliculas.Infrastructure.csproj",
-        "packagesPath": "C:\\Users\\DANIEL\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\DANIEL\\Documents\\ProyectosWeb\\proyecto-grupo\\SistemaPeliculas\\SistemaPeliculas.Infrastructure\\obj\\",
+        "projectPath": "C:\\Users\\Fabian\\Documents\\Tareas y Trabajos 4 semestre\\Tecnologias Web\\Proyectos\\SistemaPeliculas\\SistemaPeliculas\\SistemaPeliculas.Infrastructure\\SistemaPeliculas.Infrastructure.csproj",
+        "packagesPath": "C:\\Users\\Fabian\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Fabian\\Documents\\Tareas y Trabajos 4 semestre\\Tecnologias Web\\Proyectos\\SistemaPeliculas\\SistemaPeliculas\\SistemaPeliculas.Infrastructure\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\DANIEL\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Fabian\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
@@ -367,6 +368,7 @@
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "C:\\Program Files\\dotnet\\library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -374,8 +376,8 @@
             "framework": "net10.0",
             "targetAlias": "net10.0",
             "projectReferences": {
-              "C:\\Users\\DANIEL\\Documents\\ProyectosWeb\\proyecto-grupo\\SistemaPeliculas\\SistemaPeliculas.Core\\SistemaPeliculas.Core.csproj": {
-                "projectPath": "C:\\Users\\DANIEL\\Documents\\ProyectosWeb\\proyecto-grupo\\SistemaPeliculas\\SistemaPeliculas.Core\\SistemaPeliculas.Core.csproj"
+              "C:\\Users\\Fabian\\Documents\\Tareas y Trabajos 4 semestre\\Tecnologias Web\\Proyectos\\SistemaPeliculas\\SistemaPeliculas\\SistemaPeliculas.Core\\SistemaPeliculas.Core.csproj": {
+                "projectPath": "C:\\Users\\Fabian\\Documents\\Tareas y Trabajos 4 semestre\\Tecnologias Web\\Proyectos\\SistemaPeliculas\\SistemaPeliculas\\SistemaPeliculas.Core\\SistemaPeliculas.Core.csproj"
               }
             }
           }
@@ -390,7 +392,7 @@
           "auditLevel": "low",
           "auditMode": "all"
         },
-        "SdkAnalysisLevel": "10.0.300"
+        "SdkAnalysisLevel": "10.0.400"
       },
       "frameworks": {
         "net10.0": {
@@ -412,7 +414,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\10.0.300/PortableRuntimeIdentifierGraph.json",
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\10.0.401/PortableRuntimeIdentifierGraph.json",
           "packagesToPrune": {
             "Microsoft.CSharp": "(,4.7.32767]",
             "Microsoft.VisualBasic": "(,10.4.32767]",
@@ -690,20 +692,20 @@
         }
       }
     },
-    "C:\\Users\\DANIEL\\Documents\\ProyectosWeb\\proyecto-grupo\\SistemaPeliculas\\SistemaPeliculas\\SistemaPeliculas.Api.csproj": {
+    "C:\\Users\\Fabian\\Documents\\Tareas y Trabajos 4 semestre\\Tecnologias Web\\Proyectos\\SistemaPeliculas\\SistemaPeliculas\\SistemaPeliculas\\SistemaPeliculas.Api.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\DANIEL\\Documents\\ProyectosWeb\\proyecto-grupo\\SistemaPeliculas\\SistemaPeliculas\\SistemaPeliculas.Api.csproj",
+        "projectUniqueName": "C:\\Users\\Fabian\\Documents\\Tareas y Trabajos 4 semestre\\Tecnologias Web\\Proyectos\\SistemaPeliculas\\SistemaPeliculas\\SistemaPeliculas\\SistemaPeliculas.Api.csproj",
         "projectName": "SistemaPeliculas.Api",
-        "projectPath": "C:\\Users\\DANIEL\\Documents\\ProyectosWeb\\proyecto-grupo\\SistemaPeliculas\\SistemaPeliculas\\SistemaPeliculas.Api.csproj",
-        "packagesPath": "C:\\Users\\DANIEL\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\DANIEL\\Documents\\ProyectosWeb\\proyecto-grupo\\SistemaPeliculas\\SistemaPeliculas\\obj\\",
+        "projectPath": "C:\\Users\\Fabian\\Documents\\Tareas y Trabajos 4 semestre\\Tecnologias Web\\Proyectos\\SistemaPeliculas\\SistemaPeliculas\\SistemaPeliculas\\SistemaPeliculas.Api.csproj",
+        "packagesPath": "C:\\Users\\Fabian\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Fabian\\Documents\\Tareas y Trabajos 4 semestre\\Tecnologias Web\\Proyectos\\SistemaPeliculas\\SistemaPeliculas\\SistemaPeliculas\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\DANIEL\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Fabian\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
@@ -712,6 +714,7 @@
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "C:\\Program Files\\dotnet\\library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -719,11 +722,11 @@
             "framework": "net10.0",
             "targetAlias": "net10.0",
             "projectReferences": {
-              "C:\\Users\\DANIEL\\Documents\\ProyectosWeb\\proyecto-grupo\\SistemaPeliculas\\SistemaPeliculas.Core\\SistemaPeliculas.Core.csproj": {
-                "projectPath": "C:\\Users\\DANIEL\\Documents\\ProyectosWeb\\proyecto-grupo\\SistemaPeliculas\\SistemaPeliculas.Core\\SistemaPeliculas.Core.csproj"
+              "C:\\Users\\Fabian\\Documents\\Tareas y Trabajos 4 semestre\\Tecnologias Web\\Proyectos\\SistemaPeliculas\\SistemaPeliculas\\SistemaPeliculas.Core\\SistemaPeliculas.Core.csproj": {
+                "projectPath": "C:\\Users\\Fabian\\Documents\\Tareas y Trabajos 4 semestre\\Tecnologias Web\\Proyectos\\SistemaPeliculas\\SistemaPeliculas\\SistemaPeliculas.Core\\SistemaPeliculas.Core.csproj"
               },
-              "C:\\Users\\DANIEL\\Documents\\ProyectosWeb\\proyecto-grupo\\SistemaPeliculas\\SistemaPeliculas.Infrastructure\\SistemaPeliculas.Infrastructure.csproj": {
-                "projectPath": "C:\\Users\\DANIEL\\Documents\\ProyectosWeb\\proyecto-grupo\\SistemaPeliculas\\SistemaPeliculas.Infrastructure\\SistemaPeliculas.Infrastructure.csproj"
+              "C:\\Users\\Fabian\\Documents\\Tareas y Trabajos 4 semestre\\Tecnologias Web\\Proyectos\\SistemaPeliculas\\SistemaPeliculas\\SistemaPeliculas.Infrastructure\\SistemaPeliculas.Infrastructure.csproj": {
+                "projectPath": "C:\\Users\\Fabian\\Documents\\Tareas y Trabajos 4 semestre\\Tecnologias Web\\Proyectos\\SistemaPeliculas\\SistemaPeliculas\\SistemaPeliculas.Infrastructure\\SistemaPeliculas.Infrastructure.csproj"
               }
             }
           }
@@ -738,7 +741,7 @@
           "auditLevel": "low",
           "auditMode": "all"
         },
-        "SdkAnalysisLevel": "10.0.300"
+        "SdkAnalysisLevel": "10.0.400"
       },
       "frameworks": {
         "net10.0": {
@@ -769,7 +772,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\10.0.300/PortableRuntimeIdentifierGraph.json",
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\10.0.401/PortableRuntimeIdentifierGraph.json",
           "packagesToPrune": {
             "Microsoft.AspNetCore": "(,10.0.32767]",
             "Microsoft.AspNetCore.Antiforgery": "(,10.0.32767]",
