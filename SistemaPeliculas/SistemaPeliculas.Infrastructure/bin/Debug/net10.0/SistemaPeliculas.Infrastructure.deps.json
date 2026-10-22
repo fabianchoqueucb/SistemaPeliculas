@@ -1,0 +1,39 @@
+{
+  "runtimeTarget": {
+    "name": ".NETCoreApp,Version=v10.0",
+    "signature": ""
+  },
+  "compilationOptions": {},
+  "targets": {
+    ".NETCoreApp,Version=v10.0": {
+      "SistemaPeliculas.Infrastructure/1.0.0": {
+        "dependencies": {
+          "SistemaPeliculas.Core": "1.0.0"
+        },
+        "runtime": {
+          "SistemaPeliculas.Infrastructure.dll": {}
+        }
+      },
+      "SistemaPeliculas.Core/1.0.0": {
+        "runtime": {
+          "SistemaPeliculas.Core.dll": {
+            "assemblyVersion": "1.0.0.0",
+            "fileVersion": "1.0.0.0"
+          }
+        }
+      }
+    }
+  },
+  "libraries": {
+    "SistemaPeliculas.Infrastructure/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "SistemaPeliculas.Core/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    }
+  }
+}

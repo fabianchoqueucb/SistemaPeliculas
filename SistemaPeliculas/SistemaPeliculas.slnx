@@ -1,3 +1,5 @@
 <Solution>
-  <Project Path="SistemaPeliculas/SistemaPeliculas.csproj" />
+  <Project Path="SistemaPeliculas/SistemaPeliculas.Api.csproj" />
+  <Project Path="SistemaPeliculas.Core/SistemaPeliculas.Core.csproj" />
+  <Project Path="SistemaPeliculas.Infrastructure/SistemaPeliculas.Infrastructure.csproj" />
 </Solution>
