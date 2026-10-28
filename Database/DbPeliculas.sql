@@ -17,6 +17,7 @@ CREATE TABLE `user` (
   FirstName   VARCHAR(50)  NOT NULL,
   LastName    VARCHAR(50)  NOT NULL,
   Email       VARCHAR(100) NOT NULL,
+  Password    VARCHAR(200) NOT NULL,           -- hash PBKDF2: iteraciones.sal.hash
   DateOfBirth DATE         NOT NULL,
   Telephone   VARCHAR(15)  NULL,
   Role        VARCHAR(20)  NOT NULL,           -- Moderador | Usuario
@@ -62,12 +63,13 @@ CREATE TABLE comment (
 
 -- ---------------------------------------------------------------------
 -- Datos semilla (al menos un usuario por rol)
+-- Contraseñas de prueba: moderador = Moderador.2026 | usuarios = Usuario.2026
 -- ---------------------------------------------------------------------
-INSERT INTO `user` (FirstName, LastName, Email, DateOfBirth, Telephone, Role, IsActive) VALUES
-('Ana',    'Rojas',   'ana.moderadora@peliculas.com', '1990-04-12', '70011122', 'Moderador', 1),
-('Carlos', 'Mendoza', 'carlos@mail.com',              '1998-07-22', '70033344', 'Usuario',   1),
-('Lucía',  'Vargas',  'lucia@mail.com',               '2001-11-08', NULL,       'Usuario',   1),
-('Pedro',  'Flores',  'pedro@mail.com',               '1995-02-17', '70055566', 'Usuario',   0);
+INSERT INTO `user` (FirstName, LastName, Email, Password, DateOfBirth, Telephone, Role, IsActive) VALUES
+('Ana',    'Rojas',   'ana.moderadora@peliculas.com', '10000.8vj/giGfKYYa7k/yLyTcfw==.J0BOf6t71iQuSB+u3YYN6UfS8amyAVnTKAJWq5pklFU=', '1990-04-12', '70011122', 'Moderador', 1),
+('Carlos', 'Mendoza', 'carlos@mail.com', '10000.CB3clV+2Oda76lR8ejA72A==.aPFOsz8jy8+ybItayFnv60sb//9gk9WFkaf3FH735qE=', '1998-07-22', '70033344', 'Usuario',   1),
+('Lucía',  'Vargas',  'lucia@mail.com', '10000.CB3clV+2Oda76lR8ejA72A==.aPFOsz8jy8+ybItayFnv60sb//9gk9WFkaf3FH735qE=', '2001-11-08', NULL,       'Usuario',   1),
+('Pedro',  'Flores',  'pedro@mail.com', '10000.CB3clV+2Oda76lR8ejA72A==.aPFOsz8jy8+ybItayFnv60sb//9gk9WFkaf3FH735qE=', '1995-02-17', '70055566', 'Usuario',   0);
 
 INSERT INTO movie (Title, Description, ReleaseDate, Length, Genre) VALUES
 ('El Padrino',          'La historia de la familia Corleone y su imperio criminal en Nueva York.', '1972-03-24', '2h 55m', 'Drama'),

@@ -1,4 +1,5 @@
 using AutoMapper;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using SistemaPeliculas.Core.DTOs;
 using SistemaPeliculas.Core.Entities;
@@ -35,8 +36,9 @@ namespace SistemaPeliculas.Api.Controllers
             return Ok(_mapper.Map<MovieDto>(movie));
         }
 
-        // POST api/movies  (CU-02 Subir película)
+        // POST api/movies  (CU-02 Subir película) - solo el moderador (RN-12)
         [HttpPost]
+        [Authorize(Roles = "Moderador")]
         public async Task<IActionResult> InsertMovie(MovieDto movieDto)
         {
             var movie = _mapper.Map<Movie>(movieDto);

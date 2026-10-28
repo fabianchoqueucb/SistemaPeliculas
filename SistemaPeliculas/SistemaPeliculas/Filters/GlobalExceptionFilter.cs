@@ -14,7 +14,13 @@ namespace SistemaPeliculas.Api.Filters
                 context.Result = new ObjectResult(new
                 {
                     status = ex.StatusCode,
-                    title = ex.StatusCode == 404 ? "No encontrado" : "Regla de negocio",
+                    title = ex.StatusCode switch
+                    {
+                        401 => "No autorizado",
+                        403 => "Prohibido",
+                        404 => "No encontrado",
+                        _ => "Regla de negocio"
+                    },
                     detail = ex.Message
                 })
                 {
