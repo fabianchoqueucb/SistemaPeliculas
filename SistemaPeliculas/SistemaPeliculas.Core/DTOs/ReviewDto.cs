@@ -5,6 +5,7 @@ namespace SistemaPeliculas.Core.DTOs
         public int Id { get; set; }
         public int MovieId { get; set; }
         public int UserId { get; set; }
+        public string? UserName { get; set; }   // solo de salida: nombre del autor
         public string? Description { get; set; }
         public float Grade { get; set; }
         public DateTime Date { get; set; }

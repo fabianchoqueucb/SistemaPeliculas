@@ -21,7 +21,17 @@ namespace SistemaPeliculas.Infrastructure.Repositories
 
         public async Task<Review?> GetReviewByIdAsync(int id)
         {
-            return await _context.Reviews.FirstOrDefaultAsync(r => r.Id == id);
+            return await _context.Reviews.Include(r => r.User).FirstOrDefaultAsync(r => r.Id == id);
+        }
+
+        public async Task<IEnumerable<Review>> GetReviewsByMovieAsync(int movieId)
+        {
+            // Include trae también el autor (JOIN con la tabla user) para mostrar su nombre
+            return await _context.Reviews
+                .Include(r => r.User)
+                .Where(r => r.MovieId == movieId)
+                .OrderByDescending(r => r.Date)
+                .ToListAsync();
         }
 
         public async Task<bool> ExistsReviewAsync(int userId, int movieId)

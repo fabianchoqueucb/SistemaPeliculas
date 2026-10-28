@@ -1,4 +1,5 @@
 using System.Text.RegularExpressions;
+using SistemaPeliculas.Core.CustomEntities;
 using SistemaPeliculas.Core.Entities;
 using SistemaPeliculas.Core.Exceptions;
 using SistemaPeliculas.Core.Interfaces;
@@ -38,6 +39,24 @@ namespace SistemaPeliculas.Core.Services
                 throw new BusinessException("Reseña no encontrada", 404);
 
             return review;
+        }
+
+        // CU-05 Consultar reseñas de una película
+        public async Task<MovieReviewsSummary> GetReviewsByMovieAsync(int movieId)
+        {
+            var movie = await _movieRepository.GetMovieByIdAsync(movieId);
+            if (movie == null)
+                throw new BusinessException("Película no encontrada", 404);
+
+            var reviews = (await _reviewRepository.GetReviewsByMovieAsync(movieId)).ToList();
+
+            return new MovieReviewsSummary
+            {
+                Movie = movie,
+                Reviews = reviews,
+                TotalReviews = reviews.Count,
+                AverageGrade = reviews.Count == 0 ? null : Math.Round(reviews.Average(r => r.Grade), 1)
+            };
         }
 
         public async Task<Review> InsertReviewAsync(Review review)

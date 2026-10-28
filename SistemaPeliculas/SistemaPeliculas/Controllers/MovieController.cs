@@ -13,11 +13,13 @@ namespace SistemaPeliculas.Api.Controllers
     public class MovieController : ControllerBase
     {
         private readonly IMovieService _movieService;
+        private readonly IReviewService _reviewService;
         private readonly IMapper _mapper;
 
-        public MovieController(IMovieService movieService, IMapper mapper)
+        public MovieController(IMovieService movieService, IReviewService reviewService, IMapper mapper)
         {
             _movieService = movieService;
+            _reviewService = reviewService;
             _mapper = mapper;
         }
 
@@ -35,6 +37,14 @@ namespace SistemaPeliculas.Api.Controllers
         {
             var movie = await _movieService.GetMovieByIdAsync(id);
             return Ok(_mapper.Map<MovieDto>(movie));
+        }
+
+        // GET api/movies/5/reviews  (CU-05 Consultar reseñas de una película) - público
+        [HttpGet("{id}/reviews")]
+        public async Task<IActionResult> GetMovieReviews(int id)
+        {
+            var summary = await _reviewService.GetReviewsByMovieAsync(id);
+            return Ok(_mapper.Map<MovieReviewsDto>(summary));
         }
 
         // POST api/movies  (CU-02 Subir película) - solo el moderador (RN-12)
