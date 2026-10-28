@@ -1,0 +1,99 @@
+@host = http://localhost:5093
+
+### Listar películas
+GET {{host}}/api/movies
+
+### CU-02 Subir película (camino feliz)
+POST {{host}}/api/movies
+Content-Type: application/json
+
+{
+  "title": "Interestelar",
+  "description": "Un grupo de exploradores viaja a través de un agujero de gusano en busca de un nuevo hogar para la humanidad.",
+  "releaseDate": "2014-11-07",
+  "length": "2h 49m",
+  "genre": "Ciencia ficción"
+}
+
+### CU-02 Error: título repetido (RN-03)
+POST {{host}}/api/movies
+Content-Type: application/json
+
+{
+  "title": "Interestelar",
+  "description": "Duplicada",
+  "releaseDate": "2014-11-07",
+  "length": "2h 49m",
+  "genre": "Drama"
+}
+
+### CU-02 Error: duración fuera de rango (RN-05)
+POST {{host}}/api/movies
+Content-Type: application/json
+
+{
+  "title": "Corto",
+  "description": "Demasiado corta",
+  "releaseDate": "2020-01-01",
+  "length": "0h 40m",
+  "genre": "Comedia"
+}
+
+### CU-02 Error: género no válido (RN-04)
+POST {{host}}/api/movies
+Content-Type: application/json
+
+{
+  "title": "Película X",
+  "description": "Género inventado",
+  "releaseDate": "2020-01-01",
+  "length": "1h 30m",
+  "genre": "Western espacial"
+}
+
+### Listar reseñas
+GET {{host}}/api/reviews
+
+### CU-03 Subir reseña (camino feliz)
+POST {{host}}/api/reviews
+Content-Type: application/json
+
+{
+  "movieId": 1,
+  "userId": 3,
+  "description": "Gran película, la banda sonora es increíble.",
+  "grade": 9
+}
+
+### CU-03 Error: calificación fuera de rango (RN-09)
+POST {{host}}/api/reviews
+Content-Type: application/json
+
+{
+  "movieId": 1,
+  "userId": 2,
+  "description": "No me gustó",
+  "grade": 15
+}
+
+### CU-03 Error: palabras ofensivas (RN-10)
+POST {{host}}/api/reviews
+Content-Type: application/json
+
+{
+  "movieId": 2,
+  "userId": 2,
+  "description": "El protagonista es un idiota",
+  "grade": 4
+}
+
+### CU-03 Error: película inexistente (RN-07)
+POST {{host}}/api/reviews
+Content-Type: application/json
+
+{
+  "movieId": 999,
+  "userId": 2,
+  "description": "No existe",
+  "grade": 5
+}
