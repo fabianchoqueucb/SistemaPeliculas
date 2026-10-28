@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 using SistemaPeliculas.Core.DTOs;
 using SistemaPeliculas.Core.Entities;
 using SistemaPeliculas.Core.Interfaces;
+using SistemaPeliculas.Core.QueryFilters;
 
 namespace SistemaPeliculas.Api.Controllers
 {
@@ -20,11 +21,11 @@ namespace SistemaPeliculas.Api.Controllers
             _mapper = mapper;
         }
 
-        // GET api/movies
+        // GET api/movies?title=&genre=&year=  (CU-04 Consultar catálogo) - público
         [HttpGet]
-        public async Task<IActionResult> GetMovies()
+        public async Task<IActionResult> GetMovies([FromQuery] MovieQueryFilter filter)
         {
-            var movies = await _movieService.GetAllMoviesAsync();
+            var movies = await _movieService.GetMoviesAsync(filter);
             return Ok(_mapper.Map<IEnumerable<MovieDto>>(movies));
         }
 
