@@ -25,11 +25,28 @@ Flujo: Cliente (Postman) → Controlador → Servicio → Repositorio → DbCont
    ```
 3. Probar con `SistemaPeliculas/SistemaPeliculas.http` o importando `Postman/SistemaPeliculas.postman_collection.json` (base_url = http://localhost:5093).
 
-## Casos de uso implementados (Evaluación 1)
+## Usuarios de prueba
 
-| CU | Endpoint |
-|---|---|
-| CU-02 Subir Película | `POST /api/movies` |
-| CU-03 Subir Reseña | `POST /api/reviews` |
+| Rol | Correo | Contraseña |
+|---|---|---|
+| Moderador | ana.moderadora@peliculas.com | Moderador.2026 |
+| Usuario | lucia@mail.com / carlos@mail.com | Usuario.2026 |
+| Usuario inactivo | pedro@mail.com | Usuario.2026 |
 
-También: `GET /api/movies`, `GET /api/movies/{id}`, `GET /api/reviews`, `GET /api/reviews/{id}`.
+## Casos de uso implementados
+
+| CU | Endpoint | Acceso | Revisión |
+|---|---|---|---|
+| CU-01 Iniciar Sesión | `POST /api/auth/login` | Público | 2 |
+| CU-02 Subir Película | `POST /api/movies` | Moderador (token) | 1 |
+| CU-03 Subir Reseña | `POST /api/reviews` | Usuario con sesión (token) | 1 |
+| CU-04 Consultar Catálogo | `GET /api/movies?title=&genre=&year=` y `GET /api/movies/{id}` | Público | 2 |
+| CU-05 Consultar Reseñas de una Película | `GET /api/movies/{id}/reviews` | Público | 2 |
+
+También: `GET /api/reviews`, `GET /api/reviews/{id}`.
+
+## Probar con Postman
+
+1. Importar `Postman/SistemaPeliculas.postman_collection.json` y `Postman/SistemaPeliculas.Desarrollo.postman_environment.json`.
+2. Elegir el entorno **SistemaPeliculas - Desarrollo**.
+3. Ejecutar primero la carpeta **Auth**: los logins guardan los tokens en `{{token_moderador}}` y `{{token_usuario}}`.
