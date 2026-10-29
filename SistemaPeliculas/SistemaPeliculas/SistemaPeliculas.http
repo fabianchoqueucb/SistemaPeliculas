@@ -1,32 +1,17 @@
 @host = http://localhost:5093
 
-### CU-01 Login moderador (copia el token de la respuesta en @tokenModerador)
-POST {{host}}/api/auth/login
+### 1. Consultar catálogo de películas
+GET {{host}}/api/movie
+
+### 2. Consultar película por Id
+GET {{host}}/api/movie/1
+
+### 3. Crear nueva película
+POST {{host}}/api/movie
 Content-Type: application/json
-
-{ "email": "ana.moderadora@peliculas.com", "password": "Moderador.2026" }
-
-### CU-01 Login usuario (copia el token en @tokenUsuario)
-POST {{host}}/api/auth/login
-Content-Type: application/json
-
-{ "email": "lucia@mail.com", "password": "Usuario.2026" }
-
-@tokenModerador = pega-aqui-el-token
-@tokenUsuario = pega-aqui-el-token
-
-### CU-04 Catálogo con filtros
-GET {{host}}/api/movies?genre=drama
-
-### CU-05 Reseñas y promedio de una película
-GET {{host}}/api/movies/1/reviews
-
-### CU-02 Subir película (moderador)
-POST {{host}}/api/movies
-Content-Type: application/json
-Authorization: Bearer {{tokenModerador}}
 
 {
+  "id": 0,
   "title": "Interestelar",
   "description": "Un grupo de exploradores viaja a través de un agujero de gusano.",
   "releaseDate": "2014-11-07",
@@ -34,9 +19,26 @@ Authorization: Bearer {{tokenModerador}}
   "genre": "Ciencia ficción"
 }
 
-### CU-03 Subir reseña (usuario)
-POST {{host}}/api/reviews
-Content-Type: application/json
-Authorization: Bearer {{tokenUsuario}}
+### 4. Consultar todas las reseñas
+GET {{host}}/api/review
 
-{ "movieId": 3, "description": "Muy buena.", "grade": 9 }
+### 5. Consultar reseña por Id
+GET {{host}}/api/review/1
+
+### 6. Consultar reseñas de una película
+GET {{host}}/api/review/movie/1
+
+### 7. Crear nueva reseña
+POST {{host}}/api/review
+Content-Type: application/json
+
+{
+  "id": 0,
+  "movieId": 1,
+  "userId": 2,
+  "description": "Una obra maestra absoluta, recomendada.",
+  "grade": 9.5
+}
+
+### 8. Consultar comentarios
+GET {{host}}/api/comment

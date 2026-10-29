@@ -7,13 +7,13 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="10.0.0" />
     <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="10.0.12" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\SistemaPeliculas.Core\SistemaPeliculas.Core.csproj" />
     <ProjectReference Include="..\SistemaPeliculas.Infrastructure\SistemaPeliculas.Infrastructure.csproj" />
+    <ProjectReference Include="..\SistemaPeliculas.Services\SistemaPeliculas.Services.csproj" />
   </ItemGroup>
 
 </Project>

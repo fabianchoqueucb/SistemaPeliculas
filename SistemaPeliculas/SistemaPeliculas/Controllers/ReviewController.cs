@@ -1,53 +1,110 @@
-using System.Security.Claims;
 using AutoMapper;
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using SistemaPeliculas.Api.Response;
 using SistemaPeliculas.Core.DTOs;
 using SistemaPeliculas.Core.Entities;
-using SistemaPeliculas.Core.Interfaces;
+using SistemaPeliculas.Services.Interfaces;
+using SistemaPeliculas.Services.Validators;
 
 namespace SistemaPeliculas.Api.Controllers
 {
-    [Route("api/reviews")]
+    [Route("api/[controller]")]
     [ApiController]
     public class ReviewController : ControllerBase
     {
         private readonly IReviewService _reviewService;
         private readonly IMapper _mapper;
+        private readonly CrearReviewDtoValidator _crearValidator;
 
-        public ReviewController(IReviewService reviewService, IMapper mapper)
+        public ReviewController(IMapper mapper, IReviewService reviewService,
+            CrearReviewDtoValidator crearValidator)
         {
             _reviewService = reviewService;
             _mapper = mapper;
+            _crearValidator = crearValidator;
         }
 
-        // GET api/reviews
         [HttpGet]
         public async Task<IActionResult> GetReviews()
         {
             var reviews = await _reviewService.GetAllReviewsAsync();
-            return Ok(_mapper.Map<IEnumerable<ReviewDto>>(reviews));
+            var reviewDtos = _mapper.Map<IEnumerable<ReviewDto>>(reviews);
+            var response = new ApiResponse<IEnumerable<ReviewDto>>(reviewDtos);
+            return Ok(response);
         }
 
-        // GET api/reviews/5
         [HttpGet("{id}")]
         public async Task<IActionResult> GetReviewById(int id)
         {
             var review = await _reviewService.GetReviewByIdAsync(id);
-            return Ok(_mapper.Map<ReviewDto>(review));
+            if (review == null)
+                return NotFound(new { message = "Reseña no encontrada." });
+
+            var reviewDto = _mapper.Map<ReviewDto>(review);
+            var response = new ApiResponse<ReviewDto>(reviewDto);
+            return Ok(response);
         }
 
-        // POST api/reviews  (CU-03 Subir reseña) - cualquier usuario con sesión iniciada
+        [HttpGet("movie/{movieId}")]
+        public async Task<IActionResult> GetReviewsByMovie(int movieId)
+        {
+            var reviews = await _reviewService.GetReviewsByMovieAsync(movieId);
+            var reviewDtos = _mapper.Map<IEnumerable<ReviewDto>>(reviews);
+            var response = new ApiResponse<IEnumerable<ReviewDto>>(reviewDtos);
+            return Ok(response);
+        }
+
         [HttpPost]
-        [Authorize]
         public async Task<IActionResult> InsertReview(ReviewDto reviewDto)
         {
-            var review = _mapper.Map<Review>(reviewDto);
-            // El autor es quien inició sesión, no el que venga en el body: nadie puede reseñar a nombre de otro
-            review.UserId = int.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier)!);
-            var created = await _reviewService.InsertReviewAsync(review);
-            var result = _mapper.Map<ReviewDto>(created);
-            return CreatedAtAction(nameof(GetReviewById), new { id = result.Id }, result);
+            var validationResult = await _crearValidator.ValidateAsync(reviewDto);
+            if (!validationResult.IsValid)
+            {
+                return BadRequest(new
+                {
+                    message = "Error de validación",
+                    errors = validationResult.Errors.Select(e => new
+                    {
+                        field = e.PropertyName,
+                        error = e.ErrorMessage
+                    })
+                });
+            }
+
+            try
+            {
+                var review = _mapper.Map<Review>(reviewDto);
+                await _reviewService.InsertReview(review);
+
+                var resultDto = _mapper.Map<ReviewDto>(review);
+                var response = new ApiResponse<ReviewDto>(resultDto);
+                return CreatedAtAction(nameof(GetReviewById), new { id = review.Id }, response);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, new { message = "Error al crear la reseña", error = ex.Message });
+            }
+        }
+
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> DeleteReview(int id)
+        {
+            if (id <= 0)
+                return BadRequest(new { message = "El ID debe ser mayor que cero." });
+
+            var review = await _reviewService.GetReviewByIdAsync(id);
+            if (review == null)
+                return NotFound(new { message = "Reseña no encontrada." });
+
+            try
+            {
+                await _reviewService.DeleteReview(id);
+                return NoContent();
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, new { message = "Error al eliminar la reseña", error = ex.Message });
+            }
         }
     }
 }

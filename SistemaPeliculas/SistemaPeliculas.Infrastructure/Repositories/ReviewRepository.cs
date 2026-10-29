@@ -16,7 +16,7 @@ namespace SistemaPeliculas.Infrastructure.Repositories
 
         public async Task<IEnumerable<Review>> GetAllReviewsAsync()
         {
-            return await _context.Reviews.ToListAsync();
+            return await _context.Reviews.Include(r => r.User).ToListAsync();
         }
 
         public async Task<Review?> GetReviewByIdAsync(int id)
@@ -26,7 +26,6 @@ namespace SistemaPeliculas.Infrastructure.Repositories
 
         public async Task<IEnumerable<Review>> GetReviewsByMovieAsync(int movieId)
         {
-            // Include trae también el autor (JOIN con la tabla user) para mostrar su nombre
             return await _context.Reviews
                 .Include(r => r.User)
                 .Where(r => r.MovieId == movieId)
@@ -39,9 +38,21 @@ namespace SistemaPeliculas.Infrastructure.Repositories
             return await _context.Reviews.AnyAsync(r => r.UserId == userId && r.MovieId == movieId);
         }
 
-        public async Task InsertReviewAsync(Review review)
+        public async Task InsertReview(Review review)
         {
             _context.Reviews.Add(review);
+            await _context.SaveChangesAsync();
+        }
+
+        public async Task UpdateReview(Review review)
+        {
+            _context.Reviews.Update(review);
+            await _context.SaveChangesAsync();
+        }
+
+        public async Task DeleteReview(Review review)
+        {
+            _context.Reviews.Remove(review);
             await _context.SaveChangesAsync();
         }
     }
