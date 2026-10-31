@@ -61,6 +61,29 @@ CREATE TABLE comment (
   CONSTRAINT FK_Comment_User   FOREIGN KEY (UserId)   REFERENCES `user`(Id) ON DELETE SET NULL
 );
 
+CREATE TABLE actor (
+  Id          INT          NOT NULL AUTO_INCREMENT,
+  MovieId     INT          NULL,
+  FirstName   VARCHAR(100) NOT NULL,
+  LastName    VARCHAR(100) NOT NULL,
+  Email       VARCHAR(100) NOT NULL,
+  DateOfBirth DATE         NOT NULL,
+  IsActive    TINYINT(1)   NOT NULL DEFAULT 1,
+  PRIMARY KEY (Id),
+  CONSTRAINT FK_Actor_Movie FOREIGN KEY (MovieId) REFERENCES movie(Id) ON DELETE SET NULL
+);
+
+CREATE TABLE watchlist (
+  Id        INT      NOT NULL AUTO_INCREMENT,
+  UserId    INT      NOT NULL,
+  MovieId   INT      NOT NULL,
+  DateAdded DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (Id),
+  UNIQUE KEY UK_Watchlist_User_Movie (UserId, MovieId),
+  CONSTRAINT FK_Watchlist_User  FOREIGN KEY (UserId)  REFERENCES `user`(Id) ON DELETE CASCADE,
+  CONSTRAINT FK_Watchlist_Movie FOREIGN KEY (MovieId) REFERENCES movie(Id)   ON DELETE CASCADE
+);
+
 -- ---------------------------------------------------------------------
 -- Datos semilla (al menos un usuario por rol)
 -- Contraseñas de prueba: moderador = Moderador.2026 | usuarios = Usuario.2026
@@ -84,6 +107,17 @@ INSERT INTO review (MovieId, UserId, Description, Date, Grade) VALUES
 
 INSERT INTO comment (ReviewId, UserId, Description, Date, IsActive) VALUES
 (1, 3, 'Totalmente de acuerdo, un clásico.', '2026-10-02 10:00:00', 1);
+
+INSERT INTO actor (Id, MovieId, FirstName, LastName, Email, DateOfBirth, IsActive) VALUES
+(1, 1, 'Marlon', 'Brando', 'marlon.brando@hollywood.com', '1924-04-03', 1),
+(2, 1, 'Al',     'Pacino', 'al.pacino@hollywood.com',      '1940-04-25', 1),
+(3, 2, 'Tom',    'Hanks',  'tom.hanks@hollywood.com',       '1956-07-09', 1),
+(4, 3, 'Song',   'Kang-ho','song.kangho@cinema.kr',         '1967-01-17', 1);
+
+INSERT INTO watchlist (Id, UserId, MovieId, DateAdded) VALUES
+(1, 2, 1, '2026-10-20 14:00:00'),
+(2, 2, 2, '2026-10-21 16:30:00'),
+(3, 3, 3, '2026-10-22 19:15:00');
 
 -- ---------------------------------------------------------------------
 -- Usuario de conexión para la API (el mismo en la PC de todo el grupo)

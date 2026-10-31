@@ -1,168 +1,40 @@
 {
   "info": {
-    "name": "SistemaPeliculas API",
-    "description": "Colección de pruebas de la API SistemaPeliculas. Ejecuta primero la carpeta Auth para guardar los tokens.",
+    "_postman_id": "c1f7a8b9-4d2e-4f1a-9c3e-8e5b7a1f2c3d",
+    "name": "SistemaPeliculas - E2",
+    "description": "Colección de pruebas para la API SistemaPeliculas alineada al avance docente (Arquitectura en 4 capas, FluentValidation, ExceptionHandlingMiddleware, Repositorio Genérico, Actores y Watchlists).",
     "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
   },
   "item": [
     {
-      "name": "Auth",
+      "name": "Películas",
       "item": [
         {
-          "name": "CU-01 Login moderador (200)",
-          "event": [
-            {
-              "listen": "test",
-              "script": {
-                "type": "text/javascript",
-                "exec": [
-                  "pm.test(\"Status 200\", () => pm.response.to.have.status(200));",
-                  "const t = pm.response.json().token; if (pm.environment.name) { pm.environment.set(\"token_moderador\", t); } else { pm.collectionVariables.set(\"token_moderador\", t); }"
-                ]
-              }
-            }
-          ],
+          "name": "Listar Películas",
           "request": {
-            "method": "POST",
-            "header": [
-              {
-                "key": "Content-Type",
-                "value": "application/json"
-              }
-            ],
+            "method": "GET",
+            "header": [],
             "url": {
-              "raw": "{{base_url}}/api/auth/login",
-              "host": [
-                "{{base_url}}"
-              ],
-              "path": [
-                "api",
-                "auth",
-                "login"
-              ]
-            },
-            "body": {
-              "mode": "raw",
-              "raw": "{\n  \"email\": \"ana.moderadora@peliculas.com\",\n  \"password\": \"Moderador.2026\"\n}",
-              "options": {
-                "raw": {
-                  "language": "json"
-                }
-              }
-            },
-            "auth": {
-              "type": "noauth"
-            },
-            "description": "Guarda el token en {{token_moderador}}"
-          }
-        },
-        {
-          "name": "CU-01 Login usuario (200)",
-          "event": [
-            {
-              "listen": "test",
-              "script": {
-                "type": "text/javascript",
-                "exec": [
-                  "pm.test(\"Status 200\", () => pm.response.to.have.status(200));",
-                  "const t = pm.response.json().token; if (pm.environment.name) { pm.environment.set(\"token_usuario\", t); } else { pm.collectionVariables.set(\"token_usuario\", t); }"
-                ]
-              }
-            }
-          ],
-          "request": {
-            "method": "POST",
-            "header": [
-              {
-                "key": "Content-Type",
-                "value": "application/json"
-              }
-            ],
-            "url": {
-              "raw": "{{base_url}}/api/auth/login",
-              "host": [
-                "{{base_url}}"
-              ],
-              "path": [
-                "api",
-                "auth",
-                "login"
-              ]
-            },
-            "body": {
-              "mode": "raw",
-              "raw": "{\n  \"email\": \"lucia@mail.com\",\n  \"password\": \"Usuario.2026\"\n}",
-              "options": {
-                "raw": {
-                  "language": "json"
-                }
-              }
-            },
-            "auth": {
-              "type": "noauth"
-            },
-            "description": "Guarda el token en {{token_usuario}}"
-          }
-        },
-        {
-          "name": "CU-01 Error: clave incorrecta (401)",
-          "event": [
-            {
-              "listen": "test",
-              "script": {
-                "type": "text/javascript",
-                "exec": [
-                  "pm.test(\"Status 401\", () => pm.response.to.have.status(401));"
-                ]
-              }
-            }
-          ],
-          "request": {
-            "method": "POST",
-            "header": [
-              {
-                "key": "Content-Type",
-                "value": "application/json"
-              }
-            ],
-            "url": {
-              "raw": "{{base_url}}/api/auth/login",
-              "host": [
-                "{{base_url}}"
-              ],
-              "path": [
-                "api",
-                "auth",
-                "login"
-              ]
-            },
-            "body": {
-              "mode": "raw",
-              "raw": "{\n  \"email\": \"lucia@mail.com\",\n  \"password\": \"otra\"\n}",
-              "options": {
-                "raw": {
-                  "language": "json"
-                }
-              }
-            },
-            "auth": {
-              "type": "noauth"
+              "raw": "{{base_url}}/api/movie",
+              "host": ["{{base_url}}"],
+              "path": ["api", "movie"]
             }
           }
         },
         {
-          "name": "CU-01 Error: cuenta inactiva (403)",
-          "event": [
-            {
-              "listen": "test",
-              "script": {
-                "type": "text/javascript",
-                "exec": [
-                  "pm.test(\"Status 403\", () => pm.response.to.have.status(403));"
-                ]
-              }
+          "name": "Consultar Película por ID",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/movie/1",
+              "host": ["{{base_url}}"],
+              "path": ["api", "movie", "1"]
             }
-          ],
+          }
+        },
+        {
+          "name": "Crear Película",
           "request": {
             "method": "POST",
             "header": [
@@ -171,391 +43,93 @@
                 "value": "application/json"
               }
             ],
-            "url": {
-              "raw": "{{base_url}}/api/auth/login",
-              "host": [
-                "{{base_url}}"
-              ],
-              "path": [
-                "api",
-                "auth",
-                "login"
-              ]
-            },
             "body": {
               "mode": "raw",
-              "raw": "{\n  \"email\": \"pedro@mail.com\",\n  \"password\": \"Usuario.2026\"\n}",
-              "options": {
-                "raw": {
-                  "language": "json"
-                }
-              }
+              "raw": "{\n  \"id\": 0,\n  \"title\": \"Interestelar\",\n  \"description\": \"Un grupo de exploradores viaja a través de un agujero de gusano.\",\n  \"releaseDate\": \"2014-11-07\",\n  \"length\": \"2h 49m\",\n  \"genre\": \"Ciencia ficción\"\n}"
             },
-            "auth": {
-              "type": "noauth"
+            "url": {
+              "raw": "{{base_url}}/api/movie",
+              "host": ["{{base_url}}"],
+              "path": ["api", "movie"]
+            }
+          }
+        },
+        {
+          "name": "Actualizar Película",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"id\": 1,\n  \"title\": \"El Padrino (Remasterizada)\",\n  \"description\": \"La historia de la familia Corleone y su imperio criminal en Nueva York.\",\n  \"releaseDate\": \"1972-03-24\",\n  \"length\": \"2h 55m\",\n  \"genre\": \"Drama\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/movie/1",
+              "host": ["{{base_url}}"],
+              "path": ["api", "movie", "1"]
+            }
+          }
+        },
+        {
+          "name": "Eliminar Película",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/movie/4",
+              "host": ["{{base_url}}"],
+              "path": ["api", "movie", "4"]
             }
           }
         }
       ]
     },
     {
-      "name": "Movies",
+      "name": "Reseñas",
       "item": [
         {
-          "name": "CU-04 Catálogo completo (200)",
-          "event": [
-            {
-              "listen": "test",
-              "script": {
-                "type": "text/javascript",
-                "exec": [
-                  "pm.test(\"Status 200\", () => pm.response.to.have.status(200));"
-                ]
-              }
-            }
-          ],
+          "name": "Listar Reseñas",
           "request": {
             "method": "GET",
             "header": [],
             "url": {
-              "raw": "{{base_url}}/api/movies",
-              "host": [
-                "{{base_url}}"
-              ],
-              "path": [
-                "api",
-                "movies"
-              ]
-            },
-            "auth": {
-              "type": "noauth"
+              "raw": "{{base_url}}/api/review",
+              "host": ["{{base_url}}"],
+              "path": ["api", "review"]
             }
           }
         },
         {
-          "name": "CU-04 Filtrar por género (200)",
-          "event": [
-            {
-              "listen": "test",
-              "script": {
-                "type": "text/javascript",
-                "exec": [
-                  "pm.test(\"Status 200\", () => pm.response.to.have.status(200));"
-                ]
-              }
-            }
-          ],
+          "name": "Consultar Reseña por ID",
           "request": {
             "method": "GET",
             "header": [],
             "url": {
-              "raw": "{{base_url}}/api/movies?genre=drama",
-              "host": [
-                "{{base_url}}"
-              ],
-              "path": [
-                "api",
-                "movies"
-              ],
-              "query": [
-                {
-                  "key": "genre",
-                  "value": "drama"
-                }
-              ]
-            },
-            "auth": {
-              "type": "noauth"
+              "raw": "{{base_url}}/api/review/1",
+              "host": ["{{base_url}}"],
+              "path": ["api", "review", "1"]
             }
           }
         },
         {
-          "name": "CU-04 Filtrar por título (200)",
-          "event": [
-            {
-              "listen": "test",
-              "script": {
-                "type": "text/javascript",
-                "exec": [
-                  "pm.test(\"Status 200\", () => pm.response.to.have.status(200));"
-                ]
-              }
-            }
-          ],
+          "name": "Consultar Reseñas de una Película",
           "request": {
             "method": "GET",
             "header": [],
             "url": {
-              "raw": "{{base_url}}/api/movies?title=parasitos",
-              "host": [
-                "{{base_url}}"
-              ],
-              "path": [
-                "api",
-                "movies"
-              ],
-              "query": [
-                {
-                  "key": "title",
-                  "value": "parasitos"
-                }
-              ]
-            },
-            "auth": {
-              "type": "noauth"
+              "raw": "{{base_url}}/api/review/movie/1",
+              "host": ["{{base_url}}"],
+              "path": ["api", "review", "movie", "1"]
             }
           }
         },
         {
-          "name": "CU-04 Filtrar por año (200)",
-          "event": [
-            {
-              "listen": "test",
-              "script": {
-                "type": "text/javascript",
-                "exec": [
-                  "pm.test(\"Status 200\", () => pm.response.to.have.status(200));"
-                ]
-              }
-            }
-          ],
-          "request": {
-            "method": "GET",
-            "header": [],
-            "url": {
-              "raw": "{{base_url}}/api/movies?year=1995",
-              "host": [
-                "{{base_url}}"
-              ],
-              "path": [
-                "api",
-                "movies"
-              ],
-              "query": [
-                {
-                  "key": "year",
-                  "value": "1995"
-                }
-              ]
-            },
-            "auth": {
-              "type": "noauth"
-            }
-          }
-        },
-        {
-          "name": "CU-04 Error: género no válido (400)",
-          "event": [
-            {
-              "listen": "test",
-              "script": {
-                "type": "text/javascript",
-                "exec": [
-                  "pm.test(\"Status 400\", () => pm.response.to.have.status(400));"
-                ]
-              }
-            }
-          ],
-          "request": {
-            "method": "GET",
-            "header": [],
-            "url": {
-              "raw": "{{base_url}}/api/movies?genre=Western",
-              "host": [
-                "{{base_url}}"
-              ],
-              "path": [
-                "api",
-                "movies"
-              ],
-              "query": [
-                {
-                  "key": "genre",
-                  "value": "Western"
-                }
-              ]
-            },
-            "auth": {
-              "type": "noauth"
-            }
-          }
-        },
-        {
-          "name": "CU-04 Obtener película por Id (200)",
-          "event": [
-            {
-              "listen": "test",
-              "script": {
-                "type": "text/javascript",
-                "exec": [
-                  "pm.test(\"Status 200\", () => pm.response.to.have.status(200));"
-                ]
-              }
-            }
-          ],
-          "request": {
-            "method": "GET",
-            "header": [],
-            "url": {
-              "raw": "{{base_url}}/api/movies/1",
-              "host": [
-                "{{base_url}}"
-              ],
-              "path": [
-                "api",
-                "movies",
-                "1"
-              ]
-            },
-            "auth": {
-              "type": "noauth"
-            }
-          }
-        },
-        {
-          "name": "CU-04 Error: película inexistente (404)",
-          "event": [
-            {
-              "listen": "test",
-              "script": {
-                "type": "text/javascript",
-                "exec": [
-                  "pm.test(\"Status 404\", () => pm.response.to.have.status(404));"
-                ]
-              }
-            }
-          ],
-          "request": {
-            "method": "GET",
-            "header": [],
-            "url": {
-              "raw": "{{base_url}}/api/movies/999",
-              "host": [
-                "{{base_url}}"
-              ],
-              "path": [
-                "api",
-                "movies",
-                "999"
-              ]
-            },
-            "auth": {
-              "type": "noauth"
-            }
-          }
-        },
-        {
-          "name": "CU-05 Reseñas y promedio de una película (200)",
-          "event": [
-            {
-              "listen": "test",
-              "script": {
-                "type": "text/javascript",
-                "exec": [
-                  "pm.test(\"Status 200\", () => pm.response.to.have.status(200));"
-                ]
-              }
-            }
-          ],
-          "request": {
-            "method": "GET",
-            "header": [],
-            "url": {
-              "raw": "{{base_url}}/api/movies/1/reviews",
-              "host": [
-                "{{base_url}}"
-              ],
-              "path": [
-                "api",
-                "movies",
-                "1",
-                "reviews"
-              ]
-            },
-            "auth": {
-              "type": "noauth"
-            }
-          }
-        },
-        {
-          "name": "CU-05 Película sin reseñas (200)",
-          "event": [
-            {
-              "listen": "test",
-              "script": {
-                "type": "text/javascript",
-                "exec": [
-                  "pm.test(\"Status 200\", () => pm.response.to.have.status(200));"
-                ]
-              }
-            }
-          ],
-          "request": {
-            "method": "GET",
-            "header": [],
-            "url": {
-              "raw": "{{base_url}}/api/movies/4/reviews",
-              "host": [
-                "{{base_url}}"
-              ],
-              "path": [
-                "api",
-                "movies",
-                "4",
-                "reviews"
-              ]
-            },
-            "auth": {
-              "type": "noauth"
-            }
-          }
-        },
-        {
-          "name": "CU-05 Error: película inexistente (404)",
-          "event": [
-            {
-              "listen": "test",
-              "script": {
-                "type": "text/javascript",
-                "exec": [
-                  "pm.test(\"Status 404\", () => pm.response.to.have.status(404));"
-                ]
-              }
-            }
-          ],
-          "request": {
-            "method": "GET",
-            "header": [],
-            "url": {
-              "raw": "{{base_url}}/api/movies/999/reviews",
-              "host": [
-                "{{base_url}}"
-              ],
-              "path": [
-                "api",
-                "movies",
-                "999",
-                "reviews"
-              ]
-            },
-            "auth": {
-              "type": "noauth"
-            }
-          }
-        },
-        {
-          "name": "CU-02 Subir película como moderador (201)",
-          "event": [
-            {
-              "listen": "test",
-              "script": {
-                "type": "text/javascript",
-                "exec": [
-                  "pm.test(\"Status 201\", () => pm.response.to.have.status(201));"
-                ]
-              }
-            }
-          ],
+          "name": "Crear Reseña",
           "request": {
             "method": "POST",
             "header": [
@@ -564,522 +138,96 @@
                 "value": "application/json"
               }
             ],
-            "url": {
-              "raw": "{{base_url}}/api/movies",
-              "host": [
-                "{{base_url}}"
-              ],
-              "path": [
-                "api",
-                "movies"
-              ]
-            },
             "body": {
               "mode": "raw",
-              "raw": "{\n  \"title\": \"Interestelar\",\n  \"description\": \"Un grupo de exploradores viaja a través de un agujero de gusano en busca de un nuevo hogar para la humanidad.\",\n  \"releaseDate\": \"2014-11-07\",\n  \"length\": \"2h 49m\",\n  \"genre\": \"Ciencia ficción\"\n}",
-              "options": {
-                "raw": {
-                  "language": "json"
-                }
-              }
+              "raw": "{\n  \"id\": 0,\n  \"movieId\": 2,\n  \"userId\": 2,\n  \"description\": \"Excelente película de animación, un clásico.\",\n  \"grade\": 9.0\n}"
             },
-            "auth": {
-              "type": "bearer",
-              "bearer": [
-                {
-                  "key": "token",
-                  "value": "{{token_moderador}}",
-                  "type": "string"
-                }
-              ]
-            },
-            "description": "Solo funciona una vez: la segunda da 400 por título repetido (RN-03). Para repetir, vuelve a ejecutar el script de la BD."
-          }
-        },
-        {
-          "name": "CU-02 Error: sin token (401)",
-          "event": [
-            {
-              "listen": "test",
-              "script": {
-                "type": "text/javascript",
-                "exec": [
-                  "pm.test(\"Status 401\", () => pm.response.to.have.status(401));"
-                ]
-              }
-            }
-          ],
-          "request": {
-            "method": "POST",
-            "header": [
-              {
-                "key": "Content-Type",
-                "value": "application/json"
-              }
-            ],
             "url": {
-              "raw": "{{base_url}}/api/movies",
-              "host": [
-                "{{base_url}}"
-              ],
-              "path": [
-                "api",
-                "movies"
-              ]
-            },
-            "body": {
-              "mode": "raw",
-              "raw": "{\n  \"title\": \"Sin token\",\n  \"description\": \"x\",\n  \"releaseDate\": \"2020-01-01\",\n  \"length\": \"1h 30m\",\n  \"genre\": \"Drama\"\n}",
-              "options": {
-                "raw": {
-                  "language": "json"
-                }
-              }
-            },
-            "auth": {
-              "type": "noauth"
+              "raw": "{{base_url}}/api/review",
+              "host": ["{{base_url}}"],
+              "path": ["api", "review"]
             }
           }
         },
         {
-          "name": "CU-02 Error: rol Usuario (403)",
-          "event": [
-            {
-              "listen": "test",
-              "script": {
-                "type": "text/javascript",
-                "exec": [
-                  "pm.test(\"Status 403\", () => pm.response.to.have.status(403));"
-                ]
-              }
-            }
-          ],
+          "name": "Eliminar Reseña",
           "request": {
-            "method": "POST",
-            "header": [
-              {
-                "key": "Content-Type",
-                "value": "application/json"
-              }
-            ],
+            "method": "DELETE",
+            "header": [],
             "url": {
-              "raw": "{{base_url}}/api/movies",
-              "host": [
-                "{{base_url}}"
-              ],
-              "path": [
-                "api",
-                "movies"
-              ]
-            },
-            "body": {
-              "mode": "raw",
-              "raw": "{\n  \"title\": \"Rol usuario\",\n  \"description\": \"x\",\n  \"releaseDate\": \"2020-01-01\",\n  \"length\": \"1h 30m\",\n  \"genre\": \"Drama\"\n}",
-              "options": {
-                "raw": {
-                  "language": "json"
-                }
-              }
-            },
-            "auth": {
-              "type": "bearer",
-              "bearer": [
-                {
-                  "key": "token",
-                  "value": "{{token_usuario}}",
-                  "type": "string"
-                }
-              ]
-            }
-          }
-        },
-        {
-          "name": "CU-02 Error: título repetido (400, RN-03)",
-          "event": [
-            {
-              "listen": "test",
-              "script": {
-                "type": "text/javascript",
-                "exec": [
-                  "pm.test(\"Status 400\", () => pm.response.to.have.status(400));"
-                ]
-              }
-            }
-          ],
-          "request": {
-            "method": "POST",
-            "header": [
-              {
-                "key": "Content-Type",
-                "value": "application/json"
-              }
-            ],
-            "url": {
-              "raw": "{{base_url}}/api/movies",
-              "host": [
-                "{{base_url}}"
-              ],
-              "path": [
-                "api",
-                "movies"
-              ]
-            },
-            "body": {
-              "mode": "raw",
-              "raw": "{\n  \"title\": \"El Padrino\",\n  \"description\": \"Duplicada\",\n  \"releaseDate\": \"1972-03-24\",\n  \"length\": \"2h 55m\",\n  \"genre\": \"Drama\"\n}",
-              "options": {
-                "raw": {
-                  "language": "json"
-                }
-              }
-            },
-            "auth": {
-              "type": "bearer",
-              "bearer": [
-                {
-                  "key": "token",
-                  "value": "{{token_moderador}}",
-                  "type": "string"
-                }
-              ]
-            }
-          }
-        },
-        {
-          "name": "CU-02 Error: género no válido (400, RN-04)",
-          "event": [
-            {
-              "listen": "test",
-              "script": {
-                "type": "text/javascript",
-                "exec": [
-                  "pm.test(\"Status 400\", () => pm.response.to.have.status(400));"
-                ]
-              }
-            }
-          ],
-          "request": {
-            "method": "POST",
-            "header": [
-              {
-                "key": "Content-Type",
-                "value": "application/json"
-              }
-            ],
-            "url": {
-              "raw": "{{base_url}}/api/movies",
-              "host": [
-                "{{base_url}}"
-              ],
-              "path": [
-                "api",
-                "movies"
-              ]
-            },
-            "body": {
-              "mode": "raw",
-              "raw": "{\n  \"title\": \"Película X\",\n  \"description\": \"Género inventado\",\n  \"releaseDate\": \"2020-01-01\",\n  \"length\": \"1h 30m\",\n  \"genre\": \"Western espacial\"\n}",
-              "options": {
-                "raw": {
-                  "language": "json"
-                }
-              }
-            },
-            "auth": {
-              "type": "bearer",
-              "bearer": [
-                {
-                  "key": "token",
-                  "value": "{{token_moderador}}",
-                  "type": "string"
-                }
-              ]
-            }
-          }
-        },
-        {
-          "name": "CU-02 Error: duración fuera de rango (400, RN-05)",
-          "event": [
-            {
-              "listen": "test",
-              "script": {
-                "type": "text/javascript",
-                "exec": [
-                  "pm.test(\"Status 400\", () => pm.response.to.have.status(400));"
-                ]
-              }
-            }
-          ],
-          "request": {
-            "method": "POST",
-            "header": [
-              {
-                "key": "Content-Type",
-                "value": "application/json"
-              }
-            ],
-            "url": {
-              "raw": "{{base_url}}/api/movies",
-              "host": [
-                "{{base_url}}"
-              ],
-              "path": [
-                "api",
-                "movies"
-              ]
-            },
-            "body": {
-              "mode": "raw",
-              "raw": "{\n  \"title\": \"Corto\",\n  \"description\": \"Demasiado corta\",\n  \"releaseDate\": \"2020-01-01\",\n  \"length\": \"0h 40m\",\n  \"genre\": \"Comedia\"\n}",
-              "options": {
-                "raw": {
-                  "language": "json"
-                }
-              }
-            },
-            "auth": {
-              "type": "bearer",
-              "bearer": [
-                {
-                  "key": "token",
-                  "value": "{{token_moderador}}",
-                  "type": "string"
-                }
-              ]
+              "raw": "{{base_url}}/api/review/1",
+              "host": ["{{base_url}}"],
+              "path": ["api", "review", "1"]
             }
           }
         }
       ]
     },
     {
-      "name": "Reviews",
+      "name": "Actores (Elenco)",
       "item": [
         {
-          "name": "Listar reseñas (200)",
-          "event": [
-            {
-              "listen": "test",
-              "script": {
-                "type": "text/javascript",
-                "exec": [
-                  "pm.test(\"Status 200\", () => pm.response.to.have.status(200));"
-                ]
-              }
-            }
-          ],
+          "name": "Listar Actores (Sin Filtros)",
           "request": {
             "method": "GET",
             "header": [],
             "url": {
-              "raw": "{{base_url}}/api/reviews",
-              "host": [
-                "{{base_url}}"
-              ],
-              "path": [
-                "api",
-                "reviews"
-              ]
-            },
-            "auth": {
-              "type": "noauth"
+              "raw": "{{base_url}}/api/actors",
+              "host": ["{{base_url}}"],
+              "path": ["api", "actors"]
             }
           }
         },
         {
-          "name": "Obtener reseña por Id (200)",
-          "event": [
-            {
-              "listen": "test",
-              "script": {
-                "type": "text/javascript",
-                "exec": [
-                  "pm.test(\"Status 200\", () => pm.response.to.have.status(200));"
-                ]
-              }
-            }
-          ],
+          "name": "Listar Actores por Nombre",
           "request": {
             "method": "GET",
             "header": [],
             "url": {
-              "raw": "{{base_url}}/api/reviews/1",
-              "host": [
-                "{{base_url}}"
-              ],
-              "path": [
-                "api",
-                "reviews",
-                "1"
-              ]
-            },
-            "auth": {
-              "type": "noauth"
-            }
-          }
-        },
-        {
-          "name": "CU-03 Subir reseña como usuario (201)",
-          "event": [
-            {
-              "listen": "test",
-              "script": {
-                "type": "text/javascript",
-                "exec": [
-                  "pm.test(\"Status 201\", () => pm.response.to.have.status(201));"
-                ]
-              }
-            }
-          ],
-          "request": {
-            "method": "POST",
-            "header": [
-              {
-                "key": "Content-Type",
-                "value": "application/json"
-              }
-            ],
-            "url": {
-              "raw": "{{base_url}}/api/reviews",
-              "host": [
-                "{{base_url}}"
-              ],
-              "path": [
-                "api",
-                "reviews"
-              ]
-            },
-            "body": {
-              "mode": "raw",
-              "raw": "{\n  \"movieId\": 3,\n  \"description\": \"Muy buena, el giro de la mitad no me lo esperaba.\",\n  \"grade\": 9\n}",
-              "options": {
-                "raw": {
-                  "language": "json"
-                }
-              }
-            },
-            "auth": {
-              "type": "bearer",
-              "bearer": [
+              "raw": "{{base_url}}/api/actors?name=Brando",
+              "host": ["{{base_url}}"],
+              "path": ["api", "actors"],
+              "query": [
                 {
-                  "key": "token",
-                  "value": "{{token_usuario}}",
-                  "type": "string"
+                  "key": "name",
+                  "value": "Brando"
                 }
               ]
-            },
-            "description": "El autor sale del token (Lucía), no del body. Solo funciona una vez por película (RN-11)."
-          }
-        },
-        {
-          "name": "CU-03 Error: sin token (401)",
-          "event": [
-            {
-              "listen": "test",
-              "script": {
-                "type": "text/javascript",
-                "exec": [
-                  "pm.test(\"Status 401\", () => pm.response.to.have.status(401));"
-                ]
-              }
-            }
-          ],
-          "request": {
-            "method": "POST",
-            "header": [
-              {
-                "key": "Content-Type",
-                "value": "application/json"
-              }
-            ],
-            "url": {
-              "raw": "{{base_url}}/api/reviews",
-              "host": [
-                "{{base_url}}"
-              ],
-              "path": [
-                "api",
-                "reviews"
-              ]
-            },
-            "body": {
-              "mode": "raw",
-              "raw": "{\n  \"movieId\": 1,\n  \"grade\": 8\n}",
-              "options": {
-                "raw": {
-                  "language": "json"
-                }
-              }
-            },
-            "auth": {
-              "type": "noauth"
             }
           }
         },
         {
-          "name": "CU-03 Error: calificación fuera de rango (400, RN-09)",
-          "event": [
-            {
-              "listen": "test",
-              "script": {
-                "type": "text/javascript",
-                "exec": [
-                  "pm.test(\"Status 400\", () => pm.response.to.have.status(400));"
-                ]
-              }
-            }
-          ],
+          "name": "Listar Actores por Película",
           "request": {
-            "method": "POST",
-            "header": [
-              {
-                "key": "Content-Type",
-                "value": "application/json"
-              }
-            ],
+            "method": "GET",
+            "header": [],
             "url": {
-              "raw": "{{base_url}}/api/reviews",
-              "host": [
-                "{{base_url}}"
-              ],
-              "path": [
-                "api",
-                "reviews"
-              ]
-            },
-            "body": {
-              "mode": "raw",
-              "raw": "{\n  \"movieId\": 1,\n  \"description\": \"No me gustó\",\n  \"grade\": 15\n}",
-              "options": {
-                "raw": {
-                  "language": "json"
-                }
-              }
-            },
-            "auth": {
-              "type": "bearer",
-              "bearer": [
+              "raw": "{{base_url}}/api/actors?movieId=1",
+              "host": ["{{base_url}}"],
+              "path": ["api", "actors"],
+              "query": [
                 {
-                  "key": "token",
-                  "value": "{{token_usuario}}",
-                  "type": "string"
+                  "key": "movieId",
+                  "value": "1"
                 }
               ]
             }
           }
         },
         {
-          "name": "CU-03 Error: palabras ofensivas (400, RN-10)",
-          "event": [
-            {
-              "listen": "test",
-              "script": {
-                "type": "text/javascript",
-                "exec": [
-                  "pm.test(\"Status 400\", () => pm.response.to.have.status(400));"
-                ]
-              }
+          "name": "Consultar Actor por ID",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/actors/1",
+              "host": ["{{base_url}}"],
+              "path": ["api", "actors", "1"]
             }
-          ],
+          }
+        },
+        {
+          "name": "Registrar Actor",
           "request": {
             "method": "POST",
             "header": [
@@ -1088,50 +236,57 @@
                 "value": "application/json"
               }
             ],
-            "url": {
-              "raw": "{{base_url}}/api/reviews",
-              "host": [
-                "{{base_url}}"
-              ],
-              "path": [
-                "api",
-                "reviews"
-              ]
-            },
             "body": {
               "mode": "raw",
-              "raw": "{\n  \"movieId\": 1,\n  \"description\": \"El protagonista es un idiota\",\n  \"grade\": 4\n}",
-              "options": {
-                "raw": {
-                  "language": "json"
-                }
-              }
+              "raw": "{\n  \"id\": 0,\n  \"movieId\": 1,\n  \"firstName\": \"Robert\",\n  \"lastName\": \"Duvall\",\n  \"email\": \"robert.duvall@hollywood.com\",\n  \"dateOfBirth\": \"1931-01-05\",\n  \"isActive\": true\n}"
             },
-            "auth": {
-              "type": "bearer",
-              "bearer": [
-                {
-                  "key": "token",
-                  "value": "{{token_usuario}}",
-                  "type": "string"
-                }
-              ]
+            "url": {
+              "raw": "{{base_url}}/api/actors",
+              "host": ["{{base_url}}"],
+              "path": ["api", "actors"]
             }
           }
         },
         {
-          "name": "CU-03 Error: película inexistente (404, RN-07)",
-          "event": [
-            {
-              "listen": "test",
-              "script": {
-                "type": "text/javascript",
-                "exec": [
-                  "pm.test(\"Status 404\", () => pm.response.to.have.status(404));"
-                ]
+          "name": "Actualizar Actor",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
               }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"id\": 1,\n  \"movieId\": 1,\n  \"firstName\": \"Marlon\",\n  \"lastName\": \"Brando Jr.\",\n  \"email\": \"marlon.brando@hollywood.com\",\n  \"dateOfBirth\": \"1924-04-03\",\n  \"isActive\": true\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/actors/1",
+              "host": ["{{base_url}}"],
+              "path": ["api", "actors", "1"]
             }
-          ],
+          }
+        }
+      ]
+    },
+    {
+      "name": "Listas de Seguimiento (Watchlists)",
+      "item": [
+        {
+          "name": "Consultar Watchlist por Usuario",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/watchlists/user/2",
+              "host": ["{{base_url}}"],
+              "path": ["api", "watchlists", "user", "2"]
+            }
+          }
+        },
+        {
+          "name": "Agregar Película a Watchlist",
           "request": {
             "method": "POST",
             "header": [
@@ -1140,138 +295,55 @@
                 "value": "application/json"
               }
             ],
-            "url": {
-              "raw": "{{base_url}}/api/reviews",
-              "host": [
-                "{{base_url}}"
-              ],
-              "path": [
-                "api",
-                "reviews"
-              ]
-            },
             "body": {
               "mode": "raw",
-              "raw": "{\n  \"movieId\": 999,\n  \"description\": \"No existe\",\n  \"grade\": 5\n}",
-              "options": {
-                "raw": {
-                  "language": "json"
-                }
-              }
+              "raw": "{\n  \"userId\": 3,\n  \"movieId\": 1\n}"
             },
-            "auth": {
-              "type": "bearer",
-              "bearer": [
-                {
-                  "key": "token",
-                  "value": "{{token_usuario}}",
-                  "type": "string"
-                }
-              ]
+            "url": {
+              "raw": "{{base_url}}/api/watchlists",
+              "host": ["{{base_url}}"],
+              "path": ["api", "watchlists"]
             }
           }
         },
         {
-          "name": "CU-03 Error: película no estrenada (400, RN-08)",
-          "event": [
-            {
-              "listen": "test",
-              "script": {
-                "type": "text/javascript",
-                "exec": [
-                  "pm.test(\"Status 400\", () => pm.response.to.have.status(400));"
-                ]
-              }
-            }
-          ],
+          "name": "Quitar Película de Watchlist",
           "request": {
-            "method": "POST",
-            "header": [
-              {
-                "key": "Content-Type",
-                "value": "application/json"
-              }
-            ],
+            "method": "DELETE",
+            "header": [],
             "url": {
-              "raw": "{{base_url}}/api/reviews",
-              "host": [
-                "{{base_url}}"
-              ],
-              "path": [
-                "api",
-                "reviews"
-              ]
-            },
-            "body": {
-              "mode": "raw",
-              "raw": "{\n  \"movieId\": 4,\n  \"description\": \"Todavía no sale\",\n  \"grade\": 5\n}",
-              "options": {
-                "raw": {
-                  "language": "json"
-                }
-              }
-            },
-            "auth": {
-              "type": "bearer",
-              "bearer": [
-                {
-                  "key": "token",
-                  "value": "{{token_usuario}}",
-                  "type": "string"
-                }
-              ]
+              "raw": "{{base_url}}/api/watchlists/1",
+              "host": ["{{base_url}}"],
+              "path": ["api", "watchlists", "1"]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Comentarios",
+      "item": [
+        {
+          "name": "Listar Comentarios",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/comment",
+              "host": ["{{base_url}}"],
+              "path": ["api", "comment"]
             }
           }
         },
         {
-          "name": "CU-03 Error: reseña repetida (400, RN-11)",
-          "event": [
-            {
-              "listen": "test",
-              "script": {
-                "type": "text/javascript",
-                "exec": [
-                  "pm.test(\"Status 400\", () => pm.response.to.have.status(400));"
-                ]
-              }
-            }
-          ],
+          "name": "Consultar Comentario por ID",
           "request": {
-            "method": "POST",
-            "header": [
-              {
-                "key": "Content-Type",
-                "value": "application/json"
-              }
-            ],
+            "method": "GET",
+            "header": [],
             "url": {
-              "raw": "{{base_url}}/api/reviews",
-              "host": [
-                "{{base_url}}"
-              ],
-              "path": [
-                "api",
-                "reviews"
-              ]
-            },
-            "body": {
-              "mode": "raw",
-              "raw": "{\n  \"movieId\": 2,\n  \"description\": \"Otra vez\",\n  \"grade\": 7\n}",
-              "options": {
-                "raw": {
-                  "language": "json"
-                }
-              }
-            },
-            "auth": {
-              "type": "bearer",
-              "bearer": [
-                {
-                  "key": "token",
-                  "value": "{{token_usuario}}",
-                  "type": "string"
-                }
-              ]
+              "raw": "{{base_url}}/api/comment/1",
+              "host": ["{{base_url}}"],
+              "path": ["api", "comment", "1"]
             }
           }
         }
@@ -1282,14 +354,6 @@
     {
       "key": "base_url",
       "value": "http://localhost:5093"
-    },
-    {
-      "key": "token_moderador",
-      "value": ""
-    },
-    {
-      "key": "token_usuario",
-      "value": ""
     }
   ]
 }

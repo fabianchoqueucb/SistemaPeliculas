@@ -1,52 +1,54 @@
 # SistemaPeliculas
 
-API REST (ASP.NET Core .NET 10 + MySQL) para una plataforma de reseñas de películas: un moderador sube películas al catálogo y los usuarios publican reseñas con calificación de 1 a 10.
+API REST en ASP.NET Core (.NET 10) + MySQL para una plataforma de reseñas de películas, desarrollada bajo arquitectura limpia en 4 capas según los patrones y nivel avanzado del docente (Evaluación 2).
 
-## Arquitectura
+## Arquitectura por Capas
 
-- **SistemaPeliculas.Api** – controladores, filtro global de errores, `Program.cs`.
-- **SistemaPeliculas.Core** – entidades, DTOs, interfaces y servicios con las reglas de negocio.
-- **SistemaPeliculas.Infrastructure** – `PeliculasContext` (EF Core + Pomelo MySQL), configuraciones, repositorios y perfil de AutoMapper.
+- **SistemaPeliculas.Api** – Controladores REST (`MovieController`, `ReviewController`, `ActorsController`, `WatchlistsController`, `CommentController`), respuestas estándar `ApiResponse<T>`, Middleware Global `ExceptionHandlingMiddleware`, OpenAPI y configuración en `Program.cs`.
+- **SistemaPeliculas.Core** – Entidades del dominio (`BaseEntity`, `Movie`, `Review`, `Comment`, `User`, `Actor`, `Watchlist`), entidades de error (`ErrorResponse`), excepciones personalizadas (`BusinessException`), DTOs e interfaces de repositorios (`IBaseRepository<T>`, `IMovieRepository`, `IReviewRepository`, `ICommentRepository`, `IUserRepository`, `IActorRepository`, `IWatchlistRepository`).
+- **SistemaPeliculas.Infrastructure** – Persistencia con Entity Framework Core 9 + Pomelo MySQL (`PeliculasContext`), configuraciones Fluent API (`IEntityTypeConfiguration<T>`), mapeos de AutoMapper y repositorios (`BaseRepository<T>`, etc.).
+- **SistemaPeliculas.Services** – Capa de lógica de negocio (`MovieService`, `ReviewService`, `ActorService`, `WatchlistService`) y validación de DTOs con **FluentValidation** (`CrearMovieDtoValidator`, `ActualizarMovieDtoValidator`, `CrearReviewDtoValidator`, `CrearActorDtoValidator`, `ActualizarActorDtoValidator`, `CrearWatchlistDtoValidator`).
 
-Flujo: Cliente (Postman) → Controlador → Servicio → Repositorio → DbContext → MySQL.
+Flujo: Cliente (HTTP) → ExceptionHandlingMiddleware → Controlador → Servicio / Validadores → Repositorio → DbContext → MySQL.
 
 ## Requisitos
 
 - .NET SDK 10
-- MySQL 8
+- Servidor MySQL 8
 
-## Instalación
+## Instalación y Ejecución
 
-1. Ejecutar `Database/DbPeliculas.sql` en MySQL Workbench. Crea la base `DbPeliculas`, las tablas, datos de prueba y el usuario de conexión `peliculas`.
-2. Ejecutar la API:
+1. Ejecutar el script `Database/DbPeliculas.sql` en MySQL Workbench para crear la base `DbPeliculas`, tablas (`user`, `movie`, `review`, `comment`, `actor`, `watchlist`), datos semilla y el usuario de conexión `peliculas`.
+2. Compilar la solución:
+   ```bash
+   dotnet build SistemaPeliculas/SistemaPeliculas.slnx
    ```
-   cd SistemaPeliculas
-   dotnet run --project SistemaPeliculas --launch-profile http
+3. Ejecutar la API:
+   ```bash
+   dotnet run --project SistemaPeliculas/SistemaPeliculas/SistemaPeliculas.Api.csproj
    ```
-3. Probar con `SistemaPeliculas/SistemaPeliculas.http` o importando `Postman/SistemaPeliculas.postman_collection.json` (base_url = http://localhost:5093).
+4. Probar las peticiones directamente con `SistemaPeliculas/SistemaPeliculas/SistemaPeliculas.http` o importando la colección en Postman (`Postman/SistemaPeliculas.postman_collection.json`).
 
-## Usuarios de prueba
+## Endpoints Principales (Evaluación 2)
 
-| Rol | Correo | Contraseña |
-|---|---|---|
-| Moderador | ana.moderadora@peliculas.com | Moderador.2026 |
-| Usuario | lucia@mail.com / carlos@mail.com | Usuario.2026 |
-| Usuario inactivo | pedro@mail.com | Usuario.2026 |
-
-## Casos de uso implementados
-
-| CU | Endpoint | Acceso | Revisión |
+| Recurso | Método | Endpoint | Descripción |
 |---|---|---|---|
-| CU-01 Iniciar Sesión | `POST /api/auth/login` | Público | 2 |
-| CU-02 Subir Película | `POST /api/movies` | Moderador (token) | 1 |
-| CU-03 Subir Reseña | `POST /api/reviews` | Usuario con sesión (token) | 1 |
-| CU-04 Consultar Catálogo | `GET /api/movies?title=&genre=&year=` y `GET /api/movies/{id}` | Público | 2 |
-| CU-05 Consultar Reseñas de una Película | `GET /api/movies/{id}/reviews` | Público | 2 |
-
-También: `GET /api/reviews`, `GET /api/reviews/{id}`.
-
-## Probar con Postman
-
-1. Importar `Postman/SistemaPeliculas.postman_collection.json` y `Postman/SistemaPeliculas.Desarrollo.postman_environment.json`.
-2. Elegir el entorno **SistemaPeliculas - Desarrollo**.
-3. Ejecutar primero la carpeta **Auth**: los logins guardan los tokens en `{{token_moderador}}` y `{{token_usuario}}`.
+| **Películas** | `GET` | `/api/movie` | Listar catálogo de películas |
+| **Películas** | `GET` | `/api/movie/{id}` | Consultar película por ID |
+| **Películas** | `POST` | `/api/movie` | Registrar película (con validaciones de negocio) |
+| **Películas** | `PUT` | `/api/movie/{id}` | Actualizar película |
+| **Películas** | `DELETE` | `/api/movie/{id}` | Eliminar película |
+| **Reseñas** | `GET` | `/api/review` | Listar todas las reseñas |
+| **Reseñas** | `GET` | `/api/review/{id}` | Consultar reseña por ID |
+| **Reseñas** | `GET` | `/api/review/movie/{movieId}` | Consultar reseñas de una película |
+| **Reseñas** | `POST` | `/api/review` | Registrar reseña (valida usuario, película y palabras prohibidas) |
+| **Reseñas** | `DELETE` | `/api/review/{id}` | Eliminar reseña |
+| **Elenco (Actores)** | `GET` | `/api/actors` | Listar actores (admite filtros `?name=` y `?movieId=`) |
+| **Elenco (Actores)** | `GET` | `/api/actors/{id}` | Consultar biografía y datos de un actor específico |
+| **Elenco (Actores)** | `POST` | `/api/actors` | Registrar nuevo actor asociado a película |
+| **Elenco (Actores)** | `PUT` | `/api/actors/{id}` | Actualizar datos del actor (sin modificar ID) |
+| **Seguimiento (Watchlists)**| `GET` | `/api/watchlists/user/{userId}` | Recuperar catálogo personalizado de un usuario |
+| **Seguimiento (Watchlists)**| `POST` | `/api/watchlists` | Vincular MovieId con UserId (bloquea duplicados) |
+| **Seguimiento (Watchlists)**| `DELETE`| `/api/watchlists/{id}` | Quitar película de la lista de seguimiento personal |
+| **Comentarios** | `GET` | `/api/comment` | Listar comentarios |
+| **Comentarios** | `POST` | `/api/comment` | Registrar comentario |
