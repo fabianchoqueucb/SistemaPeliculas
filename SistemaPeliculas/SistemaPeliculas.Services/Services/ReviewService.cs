@@ -1,3 +1,4 @@
+using System.Net;
 using SistemaPeliculas.Core.Entities;
 using SistemaPeliculas.Core.Exceptions;
 using SistemaPeliculas.Core.Interfaces;
@@ -69,7 +70,28 @@ namespace SistemaPeliculas.Services.Services
 
         public async Task UpdateReview(Review review)
         {
-            await _reviewRepository.UpdateReview(review);
+            // 1. La reseña debe existir
+            var existing = await _reviewRepository.GetReviewByIdAsync(review.Id);
+            if (existing == null)
+                throw new BusinessException("La reseña no existe", HttpStatusCode.NotFound);
+
+            // 2. Solo el autor puede modificar su reseña
+            if (existing.UserId != review.UserId)
+                throw new BusinessException("Solo el autor puede modificar su reseña", HttpStatusCode.Forbidden);
+
+            // 3. Validar calificación de 1 a 10
+            if (review.Grade < 1 || review.Grade > 10)
+                throw new BusinessException("La calificación debe estar entre 1 y 10");
+
+            // 4. Validar que no contenga palabras inapropiadas
+            if (ContainsForbiddenContent(review.Description))
+                throw new BusinessException("La reseña contiene palabras no permitidas");
+
+            // Solo se pueden editar la calificación y el texto (película, usuario y fecha no cambian)
+            existing.Grade = review.Grade;
+            existing.Description = review.Description;
+
+            await _reviewRepository.UpdateReview(existing);
         }
 
         public async Task DeleteReview(int id)

@@ -16,13 +16,16 @@ namespace SistemaPeliculas.Api.Controllers
         private readonly IReviewService _reviewService;
         private readonly IMapper _mapper;
         private readonly CrearReviewDtoValidator _crearValidator;
+        private readonly ActualizarReviewDtoValidator _actualizarValidator;
 
         public ReviewController(IMapper mapper, IReviewService reviewService,
-            CrearReviewDtoValidator crearValidator)
+            CrearReviewDtoValidator crearValidator,
+            ActualizarReviewDtoValidator actualizarValidator)
         {
             _reviewService = reviewService;
             _mapper = mapper;
             _crearValidator = crearValidator;
+            _actualizarValidator = actualizarValidator;
         }
 
         [HttpGet]
@@ -85,6 +88,30 @@ namespace SistemaPeliculas.Api.Controllers
             {
                 return StatusCode(500, new { message = "Error al crear la reseña", error = ex.Message });
             }
+        }
+
+        [HttpPut("{id}")]
+        public async Task<IActionResult> UpdateReview(int id, [FromBody] ReviewDto reviewDto)
+        {
+            if (id != reviewDto.Id)
+                throw new BusinessException("El ID de la reseña no coincide.");
+
+            var validationResult = await _actualizarValidator.ValidateAsync(reviewDto);
+            if (!validationResult.IsValid)
+            {
+                throw new BusinessException(message: "Error de validación", details: validationResult.Errors.Select(e => new
+                {
+                    field = e.PropertyName,
+                    error = e.ErrorMessage
+                }));
+            }
+
+            var review = _mapper.Map<Review>(reviewDto);
+            await _reviewService.UpdateReview(review);
+
+            var updated = await _reviewService.GetReviewByIdAsync(id);
+            var resultDto = _mapper.Map<ReviewDto>(updated);
+            return Ok(new ApiResponse<ReviewDto>(resultDto));
         }
 
         [HttpDelete("{id}")]

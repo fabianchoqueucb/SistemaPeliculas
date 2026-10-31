@@ -8,6 +8,7 @@ namespace SistemaPeliculas.Services.Interfaces
         Task<Actor?> GetActorByIdAsync(int id);
         Task InsertActor(Actor actor);
         Task UpdateActor(Actor actor);
+        Task DeleteActor(int id);
     }
 }
 

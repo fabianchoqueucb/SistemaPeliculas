@@ -96,6 +96,18 @@ namespace SistemaPeliculas.Api.Controllers
             var resultDto = _mapper.Map<ActorDto>(actor);
             return Ok(new ApiResponse<ActorDto>(resultDto));
         }
+
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> DeleteActor(int id)
+        {
+            if (id <= 0)
+            {
+                throw new BusinessException("El ID del actor debe ser mayor que cero.");
+            }
+
+            await _actorService.DeleteActor(id);
+            return NoContent();
+        }
     }
 }
 

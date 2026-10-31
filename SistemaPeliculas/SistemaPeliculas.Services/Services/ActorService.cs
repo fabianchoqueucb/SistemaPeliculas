@@ -1,3 +1,4 @@
+using System.Net;
 using SistemaPeliculas.Core.Entities;
 using SistemaPeliculas.Core.Exceptions;
 using SistemaPeliculas.Core.Interfaces;
@@ -68,6 +69,17 @@ namespace SistemaPeliculas.Services.Services
             existingActor.IsActive = actor.IsActive;
 
             await _actorRepository.Update(existingActor);
+        }
+
+        public async Task DeleteActor(int id)
+        {
+            var actor = await _actorRepository.GetById(id);
+            if (actor == null)
+            {
+                throw new BusinessException("El actor no existe", HttpStatusCode.NotFound);
+            }
+
+            await _actorRepository.Delete(id);
         }
     }
 }
