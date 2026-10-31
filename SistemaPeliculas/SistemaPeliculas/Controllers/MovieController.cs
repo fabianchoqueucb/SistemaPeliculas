@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using SistemaPeliculas.Api.Response;
 using SistemaPeliculas.Core.DTOs;
 using SistemaPeliculas.Core.Entities;
+using SistemaPeliculas.Core.Exceptions;
 using SistemaPeliculas.Services.Interfaces;
 using SistemaPeliculas.Services.Validators;
 
@@ -28,9 +29,9 @@ namespace SistemaPeliculas.Api.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> GetMovies()
+        public async Task<IActionResult> GetMovies([FromQuery] string? title, [FromQuery] string? genre)
         {
-            var movies = await _movieService.GetAllMoviesAsync();
+            var movies = await _movieService.GetAllMoviesAsync(title, genre);
             var movieDtos = _mapper.Map<IEnumerable<MovieDto>>(movies);
             var response = new ApiResponse<IEnumerable<MovieDto>>(movieDtos);
             return Ok(response);
@@ -54,15 +55,11 @@ namespace SistemaPeliculas.Api.Controllers
             var validationResult = await _crearValidator.ValidateAsync(movieDto);
             if (!validationResult.IsValid)
             {
-                return BadRequest(new
+                throw new BusinessException(message: "Error de validación", details: validationResult.Errors.Select(e => new
                 {
-                    message = "Error de validación",
-                    errors = validationResult.Errors.Select(e => new
-                    {
-                        field = e.PropertyName,
-                        error = e.ErrorMessage
-                    })
-                });
+                    field = e.PropertyName,
+                    error = e.ErrorMessage
+                }));
             }
 
             try
@@ -74,6 +71,10 @@ namespace SistemaPeliculas.Api.Controllers
                 var response = new ApiResponse<MovieDto>(resultDto);
                 return CreatedAtAction(nameof(GetMovieById), new { id = movie.Id }, response);
             }
+            catch (BusinessException)
+            {
+                throw;
+            }
             catch (Exception ex)
             {
                 return StatusCode(500, new { message = "Error al crear la película", error = ex.Message });
@@ -84,20 +85,16 @@ namespace SistemaPeliculas.Api.Controllers
         public async Task<IActionResult> UpdateMovie(int id, [FromBody] MovieDto movieDto)
         {
             if (id != movieDto.Id)
-                return BadRequest("El ID de la película no coincide.");
+                throw new BusinessException("El ID de la película no coincide.");
 
             var validationResult = await _actualizarValidator.ValidateAsync(movieDto);
             if (!validationResult.IsValid)
             {
-                return BadRequest(new
+                throw new BusinessException(message: "Error de validación", details: validationResult.Errors.Select(e => new
                 {
-                    message = "Error de validación",
-                    errors = validationResult.Errors.Select(e => new
-                    {
-                        field = e.PropertyName,
-                        error = e.ErrorMessage
-                    })
-                });
+                    field = e.PropertyName,
+                    error = e.ErrorMessage
+                }));
             }
 
             var movie = await _movieService.GetMovieByIdAsync(id);
@@ -112,6 +109,10 @@ namespace SistemaPeliculas.Api.Controllers
                 var resultDto = _mapper.Map<MovieDto>(movie);
                 return Ok(new ApiResponse<MovieDto>(resultDto));
             }
+            catch (BusinessException)
+            {
+                throw;
+            }
             catch (Exception ex)
             {
                 return StatusCode(500, new { message = "Error al actualizar la película", error = ex.Message });
@@ -122,7 +123,7 @@ namespace SistemaPeliculas.Api.Controllers
         public async Task<IActionResult> DeleteMovie(int id)
         {
             if (id <= 0)
-                return BadRequest(new { message = "El ID debe ser mayor que cero." });
+                throw new BusinessException("El ID debe ser mayor que cero.");
 
             var movie = await _movieService.GetMovieByIdAsync(id);
             if (movie == null)
@@ -132,6 +133,10 @@ namespace SistemaPeliculas.Api.Controllers
             {
                 await _movieService.DeleteMovie(id);
                 return NoContent();
+            }
+            catch (BusinessException)
+            {
+                throw;
             }
             catch (Exception ex)
             {

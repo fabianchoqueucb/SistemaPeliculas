@@ -42,3 +42,66 @@ Content-Type: application/json
 
 ### 8. Consultar comentarios
 GET {{host}}/api/comment
+
+### =====================================================================
+### CASO DE USO 1: Gestión de Elenco y Personal (Actores)
+### =====================================================================
+
+### 9. Consultar todos los actores
+GET {{host}}/api/actors
+
+### 10. Consultar actores filtrando por nombre
+GET {{host}}/api/actors?name=Brando
+
+### 11. Consultar actores filtrando por película (MovieId = 1)
+GET {{host}}/api/actors?movieId=1
+
+### 12. Consultar biografía de actor por Id
+GET {{host}}/api/actors/1
+
+### 13. Registrar nuevo actor asociado a película
+POST {{host}}/api/actors
+Content-Type: application/json
+
+{
+  "id": 0,
+  "movieId": 1,
+  "firstName": "Robert",
+  "lastName": "Duvall",
+  "email": "robert.duvall@hollywood.com",
+  "dateOfBirth": "1931-01-05",
+  "isActive": true
+}
+
+### 14. Actualizar datos de un actor
+PUT {{host}}/api/actors/1
+Content-Type: application/json
+
+{
+  "id": 1,
+  "movieId": 1,
+  "firstName": "Marlon",
+  "lastName": "Brando Jr.",
+  "email": "marlon.brando@hollywood.com",
+  "dateOfBirth": "1924-04-03",
+  "isActive": true
+}
+
+### =====================================================================
+### CASO DE USO 2: Listas de Seguimiento (Watchlists / Favoritos)
+### =====================================================================
+
+### 15. Consultar películas en watchlist de un usuario (UserId = 2)
+GET {{host}}/api/watchlists/user/2
+
+### 16. Agregar película a la lista de seguimiento del usuario
+POST {{host}}/api/watchlists
+Content-Type: application/json
+
+{
+  "userId": 3,
+  "movieId": 1
+}
+
+### 17. Quitar película de la lista de seguimiento por Id
+DELETE {{host}}/api/watchlists/1

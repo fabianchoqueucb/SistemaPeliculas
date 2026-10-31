@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using SistemaPeliculas.Api.Response;
 using SistemaPeliculas.Core.DTOs;
 using SistemaPeliculas.Core.Entities;
+using SistemaPeliculas.Core.Exceptions;
 using SistemaPeliculas.Services.Interfaces;
 using SistemaPeliculas.Services.Validators;
 
@@ -60,15 +61,11 @@ namespace SistemaPeliculas.Api.Controllers
             var validationResult = await _crearValidator.ValidateAsync(reviewDto);
             if (!validationResult.IsValid)
             {
-                return BadRequest(new
+                throw new BusinessException(message: "Error de validación", details: validationResult.Errors.Select(e => new
                 {
-                    message = "Error de validación",
-                    errors = validationResult.Errors.Select(e => new
-                    {
-                        field = e.PropertyName,
-                        error = e.ErrorMessage
-                    })
-                });
+                    field = e.PropertyName,
+                    error = e.ErrorMessage
+                }));
             }
 
             try
@@ -80,6 +77,10 @@ namespace SistemaPeliculas.Api.Controllers
                 var response = new ApiResponse<ReviewDto>(resultDto);
                 return CreatedAtAction(nameof(GetReviewById), new { id = review.Id }, response);
             }
+            catch (BusinessException)
+            {
+                throw;
+            }
             catch (Exception ex)
             {
                 return StatusCode(500, new { message = "Error al crear la reseña", error = ex.Message });
@@ -90,7 +91,7 @@ namespace SistemaPeliculas.Api.Controllers
         public async Task<IActionResult> DeleteReview(int id)
         {
             if (id <= 0)
-                return BadRequest(new { message = "El ID debe ser mayor que cero." });
+                throw new BusinessException("El ID debe ser mayor que cero.");
 
             var review = await _reviewService.GetReviewByIdAsync(id);
             if (review == null)
@@ -100,6 +101,10 @@ namespace SistemaPeliculas.Api.Controllers
             {
                 await _reviewService.DeleteReview(id);
                 return NoContent();
+            }
+            catch (BusinessException)
+            {
+                throw;
             }
             catch (Exception ex)
             {

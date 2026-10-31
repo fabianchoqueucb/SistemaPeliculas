@@ -8,5 +8,7 @@ namespace SistemaPeliculas.Core.Entities
         public string Length { get; set; } = null!;
         public string Genre { get; set; } = null!;
         public virtual ICollection<Review> Reviews { get; set; } = new List<Review>();
+        public virtual ICollection<Actor> Actors { get; set; } = new List<Actor>();
+        public virtual ICollection<Watchlist> Watchlists { get; set; } = new List<Watchlist>();
     }
 }

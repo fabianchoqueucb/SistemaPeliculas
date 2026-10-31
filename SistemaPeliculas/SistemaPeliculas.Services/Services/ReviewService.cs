@@ -1,4 +1,5 @@
 using SistemaPeliculas.Core.Entities;
+using SistemaPeliculas.Core.Exceptions;
 using SistemaPeliculas.Core.Interfaces;
 using SistemaPeliculas.Services.Interfaces;
 
@@ -39,28 +40,28 @@ namespace SistemaPeliculas.Services.Services
             // 1. Validar que el usuario exista
             var user = await _userRepository.GetUserByIdAsync(review.UserId ?? 0);
             if (user == null)
-                throw new Exception("El usuario no existe");
+                throw new BusinessException("El usuario no existe");
 
             // 2. Validar que la película exista
             var movie = await _movieRepository.GetMovieByIdAsync(review.MovieId ?? 0);
             if (movie == null)
-                throw new Exception("La película no existe");
+                throw new BusinessException("La película no existe");
 
             // 3. Validar que la película ya haya sido estrenada
             if (movie.ReleaseDate > DateTime.Today)
-                throw new Exception("No se puede reseñar una película que todavía no se estrenó");
+                throw new BusinessException("No se puede reseñar una película que todavía no se estrenó");
 
             // 4. Validar calificación de 1 a 10
             if (review.Grade < 1 || review.Grade > 10)
-                throw new Exception("La calificación debe estar entre 1 y 10");
+                throw new BusinessException("La calificación debe estar entre 1 y 10");
 
             // 5. Validar que no contenga palabras inapropiadas
             if (ContainsForbiddenContent(review.Description))
-                throw new Exception("La reseña contiene palabras no permitidas");
+                throw new BusinessException("La reseña contiene palabras no permitidas");
 
             // 6. Un usuario no puede reseñar dos veces la misma película
             if (await _reviewRepository.ExistsReviewAsync(review.UserId ?? 0, review.MovieId ?? 0))
-                throw new Exception("El usuario ya publicó una reseña para esta película");
+                throw new BusinessException("El usuario ya publicó una reseña para esta película");
 
             review.Date = DateTime.Now;
             await _reviewRepository.InsertReview(review);
@@ -75,7 +76,7 @@ namespace SistemaPeliculas.Services.Services
         {
             var review = await _reviewRepository.GetReviewByIdAsync(id);
             if (review == null)
-                throw new Exception("La reseña no existe");
+                throw new BusinessException("La reseña no existe");
 
             await _reviewRepository.DeleteReview(review);
         }
@@ -105,4 +106,3 @@ namespace SistemaPeliculas.Services.Services
         }
     }
 }
-

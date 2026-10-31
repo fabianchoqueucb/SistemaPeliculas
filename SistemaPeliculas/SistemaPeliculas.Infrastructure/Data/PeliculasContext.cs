@@ -14,6 +14,8 @@ namespace SistemaPeliculas.Infrastructure.Data
         public virtual DbSet<Movie> Movies { get; set; } = null!;
         public virtual DbSet<Review> Reviews { get; set; } = null!;
         public virtual DbSet<Comment> Comments { get; set; } = null!;
+        public virtual DbSet<Actor> Actors { get; set; } = null!;
+        public virtual DbSet<Watchlist> Watchlists { get; set; } = null!;
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

@@ -14,9 +14,21 @@ namespace SistemaPeliculas.Infrastructure.Repositories
             _context = context;
         }
 
-        public async Task<IEnumerable<Movie>> GetAllMoviesAsync()
+        public async Task<IEnumerable<Movie>> GetAllMoviesAsync(string? title = null, string? genre = null)
         {
-            return await _context.Movies.OrderBy(m => m.Title).ToListAsync();
+            var query = _context.Movies.AsQueryable();
+
+            if (!string.IsNullOrWhiteSpace(title))
+            {
+                query = query.Where(m => m.Title.Contains(title));
+            }
+
+            if (!string.IsNullOrWhiteSpace(genre))
+            {
+                query = query.Where(m => m.Genre.Contains(genre));
+            }
+
+            return await query.OrderBy(m => m.Title).ToListAsync();
         }
 
         public async Task<Movie?> GetMovieByIdAsync(int id)
